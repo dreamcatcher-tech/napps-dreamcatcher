@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "useUnknownInCatchVariables": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react"
+  },
+  "tasks": {
+    "lint": "deno lint",
+    "test": "deno test -A --coverage --parallel",
+    "ok": "deno task lint && deno fmt --check && deno task test",
+    "typos": "typos -c ./.github/workflows/typos.toml",
+    "watch": "deno test -A --watch --trace-leaks",
+    "bump": "deno task bump && deno check"
+  },
+  "exclude": ["cov", "coverage", "docs", "**/vendor-docs/**"],
+  "lint": {
+    "rules": {
+      "tags": [],
+      "include": [
+        "camelcase",
+        "no-sync-fn-in-async-fn",
+        "single-var-declarator",
+        "verbatim-module-syntax",
+        "no-console",
+        "no-slow-types"
+      ]
+    }
+  },
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true,
+    "lineWidth": 80,
+    "proseWrap": "always"
+  },
+  "workspace": ["./concat"],
+  "imports": {
+    "@std/expect": "jsr:@std/expect@^1.0.16",
+    "fast-glob": "npm:fast-glob@^3.3.3",
+    "glob-to-regexp": "npm:glob-to-regexp@^0.4.1",
+    "gpt-tokenizer": "npm:gpt-tokenizer@^2.9.0"
+  },
+  "nodeModulesDir": "auto"
+}
