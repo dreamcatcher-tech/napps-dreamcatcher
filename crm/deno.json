@@ -1,0 +1,14 @@
+{
+  "name": "@dreamcatcher/crm",
+  "version": "0.0.5",
+  "description": "CLI for syncing MoneyWorks XML data with Artifact storage.",
+  "exports": {
+    "./cli": "./cli.ts"
+  },
+  "tasks": {
+    "cli": "deno run -A  cli.ts",
+    "test": "deno test --allow-read --allow-write --allow-env ",
+    "watch": "deno test --allow-read --allow-write --allow-env  --watch",
+    "bump": "deno run -A jsr:@kellnerd/bump"
+  }
+}
