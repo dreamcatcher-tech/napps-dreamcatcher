@@ -2,17 +2,22 @@
   "version": "5",
   "specifiers": {
     "jsr:@artifact/client@^0.0.138": "0.0.138",
+    "jsr:@libs/xml@7": "7.0.0",
     "jsr:@std/assert@^1.0.13": "1.0.13",
     "jsr:@std/expect@^1.0.16": "1.0.16",
     "jsr:@std/internal@^1.0.6": "1.0.7",
     "jsr:@std/internal@^1.0.7": "1.0.7",
+    "npm:@ai-sdk/openai@^2.0.0-beta.2": "2.0.0-canary.20_zod@3.25.48",
     "npm:@msgpack/msgpack@3.1.2": "3.1.2",
     "npm:@noble/hashes@1.8.0": "1.8.0",
     "npm:@open-iframe-resizer/core@^1.6.0": "1.6.0",
     "npm:@open-iframe-resizer/react@^1.6.0": "1.6.0_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:ai@^5.0.0-beta.2": "5.0.0-canary.24_zod@3.25.48",
+    "npm:commander@14": "14.0.0",
     "npm:debug@4.4.1": "4.4.1",
+    "npm:debug@^4.4.1": "4.4.1",
     "npm:fast-deep-equal@3.1.3": "3.1.3",
+    "npm:fast-deep-equal@^3.1.3": "3.1.3",
     "npm:fast-glob@^3.3.3": "3.3.3",
     "npm:glob-to-regexp@~0.4.1": "0.4.1",
     "npm:gpt-tokenizer@^2.9.0": "2.9.0",
@@ -20,6 +25,7 @@
     "npm:it-pushable@3.2.3": "3.2.3",
     "npm:it-pushable@^3.2.3": "3.2.3",
     "npm:p-limit@6.2.0": "6.2.0",
+    "npm:p-limit@^6.2.0": "6.2.0",
     "npm:path-browserify@1.0.1": "1.0.1",
     "npm:react@19.1.0": "19.1.0",
     "npm:serialize-error@12.0.0": "12.0.0",
@@ -34,17 +40,20 @@
         "npm:@noble/hashes",
         "npm:@open-iframe-resizer/core",
         "npm:@open-iframe-resizer/react",
-        "npm:debug",
-        "npm:fast-deep-equal",
+        "npm:debug@4.4.1",
+        "npm:fast-deep-equal@3.1.3",
         "npm:immutable",
         "npm:it-pushable@3.2.3",
-        "npm:p-limit",
+        "npm:p-limit@6.2.0",
         "npm:path-browserify",
         "npm:react",
         "npm:serialize-error",
         "npm:zod",
         "npm:zustand"
       ]
+    },
+    "@libs/xml@7.0.0": {
+      "integrity": "4fe581ec16d4a58fdc085c89f721e024f06afe7303d62ed4c24c12b6dec98ece"
     },
     "@std/assert@1.0.13": {
       "integrity": "ae0d31e41919b12c656c742b22522c32fb26ed0cba32975cb0de2a273cb68b29",
@@ -64,6 +73,14 @@
     }
   },
   "npm": {
+    "@ai-sdk/openai@2.0.0-canary.20_zod@3.25.48": {
+      "integrity": "sha512-AipaQeOz/nIPTtZLJaqG9sxf8zWqZ1UGLG1QOLhNpWwSBDXPVw5k0cWhLtReuZrL/ncKvL6BrGN9aEZLqcmWAg==",
+      "dependencies": [
+        "@ai-sdk/provider",
+        "@ai-sdk/provider-utils",
+        "zod"
+      ]
+    },
     "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.48": {
       "integrity": "sha512-4IJw6/wkWYLYfFYPvCs5go0L/sBRZsIRW1l/R6LniF4WjAH2+R4dMbESgBmzx+Z2+W+W6gFeK8dnQByn7vaA/w==",
       "dependencies": [
@@ -133,6 +150,9 @@
       "dependencies": [
         "fill-range"
       ]
+    },
+    "commander@14.0.0": {
+      "integrity": "sha512-2uM9rYjPvyq39NwLRqaiLtWHyDC1FvryJDa2ATTVims5YAS4PupsEQsDvP14FqhFr0P49CYDugi59xaxJlTXRA=="
     },
     "debug@4.4.1": {
       "integrity": "sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==",
@@ -294,12 +314,18 @@
   "workspace": {
     "dependencies": [
       "jsr:@artifact/client@^0.0.138",
+      "jsr:@libs/xml@7",
       "jsr:@std/expect@^1.0.16",
+      "npm:@ai-sdk/openai@^2.0.0-beta.2",
       "npm:ai@^5.0.0-beta.2",
+      "npm:commander@14",
+      "npm:debug@^4.4.1",
+      "npm:fast-deep-equal@^3.1.3",
       "npm:fast-glob@^3.3.3",
       "npm:glob-to-regexp@~0.4.1",
       "npm:gpt-tokenizer@^2.9.0",
       "npm:it-pushable@^3.2.3",
+      "npm:p-limit@^6.2.0",
       "npm:zod@3.25.48"
     ]
   }
