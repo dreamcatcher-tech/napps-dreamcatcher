@@ -4,10 +4,8 @@
   "tasks": {
     "dev": "deno run --watch main.ts"
   },
-  "imports": {
-    "ai": "npm:ai@^5.0.0-beta.2"
-  },
   "exports": {
-    ".": "./main.ts"
+    ".": "./main.ts",
+    "./schema": "./schema.ts"
   }
 }

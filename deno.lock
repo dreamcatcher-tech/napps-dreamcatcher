@@ -1,16 +1,51 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@artifact/client@^0.0.138": "0.0.138",
     "jsr:@std/assert@^1.0.13": "1.0.13",
     "jsr:@std/expect@^1.0.16": "1.0.16",
     "jsr:@std/internal@^1.0.6": "1.0.7",
     "jsr:@std/internal@^1.0.7": "1.0.7",
+    "npm:@msgpack/msgpack@3.1.2": "3.1.2",
+    "npm:@noble/hashes@1.8.0": "1.8.0",
+    "npm:@open-iframe-resizer/core@^1.6.0": "1.6.0",
+    "npm:@open-iframe-resizer/react@^1.6.0": "1.6.0_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:ai@^5.0.0-beta.2": "5.0.0-canary.24_zod@3.25.48",
+    "npm:debug@4.4.1": "4.4.1",
+    "npm:fast-deep-equal@3.1.3": "3.1.3",
     "npm:fast-glob@^3.3.3": "3.3.3",
     "npm:glob-to-regexp@~0.4.1": "0.4.1",
-    "npm:gpt-tokenizer@^2.9.0": "2.9.0"
+    "npm:gpt-tokenizer@^2.9.0": "2.9.0",
+    "npm:immutable@5.1.2": "5.1.2",
+    "npm:it-pushable@3.2.3": "3.2.3",
+    "npm:it-pushable@^3.2.3": "3.2.3",
+    "npm:p-limit@6.2.0": "6.2.0",
+    "npm:path-browserify@1.0.1": "1.0.1",
+    "npm:react@19.1.0": "19.1.0",
+    "npm:serialize-error@12.0.0": "12.0.0",
+    "npm:zod@3.25.48": "3.25.48",
+    "npm:zustand@5.0.5": "5.0.5_react@19.1.0"
   },
   "jsr": {
+    "@artifact/client@0.0.138": {
+      "integrity": "88038f546c3d3e30b0a8e57aa255f6fc24e01dd74c5d778e346a3909495eeec8",
+      "dependencies": [
+        "npm:@msgpack/msgpack",
+        "npm:@noble/hashes",
+        "npm:@open-iframe-resizer/core",
+        "npm:@open-iframe-resizer/react",
+        "npm:debug",
+        "npm:fast-deep-equal",
+        "npm:immutable",
+        "npm:it-pushable@3.2.3",
+        "npm:p-limit",
+        "npm:path-browserify",
+        "npm:react",
+        "npm:serialize-error",
+        "npm:zod",
+        "npm:zustand"
+      ]
+    },
     "@std/assert@1.0.13": {
       "integrity": "ae0d31e41919b12c656c742b22522c32fb26ed0cba32975cb0de2a273cb68b29",
       "dependencies": [
@@ -44,6 +79,12 @@
         "json-schema"
       ]
     },
+    "@msgpack/msgpack@3.1.2": {
+      "integrity": "sha512-JEW4DEtBzfe8HvUYecLU9e6+XJnKDlUAIve8FvPzF3Kzs6Xo/KuZkZJsDH0wJXl/qEZbeeE7edxDNY3kMs39hQ=="
+    },
+    "@noble/hashes@1.8.0": {
+      "integrity": "sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A=="
+    },
     "@nodelib/fs.scandir@2.1.5": {
       "integrity": "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==",
       "dependencies": [
@@ -59,6 +100,17 @@
       "dependencies": [
         "@nodelib/fs.scandir",
         "fastq"
+      ]
+    },
+    "@open-iframe-resizer/core@1.6.0": {
+      "integrity": "sha512-qv4jo06YQP1qYzhUKeaBBA5r172n0zSmRCKvm9lom8e8mZEPZj4i6SBisKrhK0sUQttWKUfNQQDVxsik7gDzug=="
+    },
+    "@open-iframe-resizer/react@1.6.0_react@19.1.0_react-dom@19.1.0__react@19.1.0": {
+      "integrity": "sha512-DFT5gs+1cSl2JSX8ISDAgenwDGCp3WatYYftA31ZW3UWa/vvZhW0WEBu5zhrxehrbVoA9+pSu5Qq6vY0gIKSTQ==",
+      "dependencies": [
+        "@open-iframe-resizer/core",
+        "react",
+        "react-dom"
       ]
     },
     "@opentelemetry/api@1.9.0": {
@@ -81,6 +133,15 @@
       "dependencies": [
         "fill-range"
       ]
+    },
+    "debug@4.4.1": {
+      "integrity": "sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==",
+      "dependencies": [
+        "ms"
+      ]
+    },
+    "fast-deep-equal@3.1.3": {
+      "integrity": "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="
     },
     "fast-glob@3.3.3": {
       "integrity": "sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==",
@@ -116,6 +177,9 @@
     "gpt-tokenizer@2.9.0": {
       "integrity": "sha512-YSpexBL/k4bfliAzMrRqn3M6+it02LutVyhVpDeMKrC/O9+pCe/5s8U2hYKa2vFLD5/vHhsKc8sOn/qGqII8Kg=="
     },
+    "immutable@5.1.2": {
+      "integrity": "sha512-qHKXW1q6liAk1Oys6umoaZbDRqjcjgSrbnrifHsfsttza7zcvRAsL7mMV6xWcyhwQy7Xj5v4hhbr6b+iDYwlmQ=="
+    },
     "is-extglob@2.1.1": {
       "integrity": "sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ=="
     },
@@ -127,6 +191,12 @@
     },
     "is-number@7.0.0": {
       "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng=="
+    },
+    "it-pushable@3.2.3": {
+      "integrity": "sha512-gzYnXYK8Y5t5b/BnJUr7glfQLO4U5vyb05gPx/TyTw+4Bv1zM9gFk4YsOrnulWefMewlphCjKkakFvj1y99Tcg==",
+      "dependencies": [
+        "p-defer"
+      ]
     },
     "json-schema@0.4.0": {
       "integrity": "sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA=="
@@ -141,11 +211,36 @@
         "picomatch"
       ]
     },
+    "ms@2.1.3": {
+      "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
+    },
+    "p-defer@4.0.1": {
+      "integrity": "sha512-Mr5KC5efvAK5VUptYEIopP1bakB85k2IWXaRC0rsh1uwn1L6M0LVml8OIQ4Gudg4oyZakf7FmeRLkMMtZW1i5A=="
+    },
+    "p-limit@6.2.0": {
+      "integrity": "sha512-kuUqqHNUqoIWp/c467RI4X6mmyuojY5jGutNU0wVTmEOOfcuwLqyMVoAi9MKi2Ak+5i9+nhmrK4ufZE8069kHA==",
+      "dependencies": [
+        "yocto-queue"
+      ]
+    },
+    "path-browserify@1.0.1": {
+      "integrity": "sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g=="
+    },
     "picomatch@2.3.1": {
       "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="
     },
     "queue-microtask@1.2.3": {
       "integrity": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
+    },
+    "react-dom@19.1.0_react@19.1.0": {
+      "integrity": "sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==",
+      "dependencies": [
+        "react",
+        "scheduler"
+      ]
+    },
+    "react@19.1.0": {
+      "integrity": "sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg=="
     },
     "reusify@1.1.0": {
       "integrity": "sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw=="
@@ -156,11 +251,26 @@
         "queue-microtask"
       ]
     },
+    "scheduler@0.26.0": {
+      "integrity": "sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA=="
+    },
+    "serialize-error@12.0.0": {
+      "integrity": "sha512-ZYkZLAvKTKQXWuh5XpBw7CdbSzagarX39WyZ2H07CDLC5/KfsRGlIXV8d4+tfqX1M7916mRqR1QfNHSij+c9Pw==",
+      "dependencies": [
+        "type-fest"
+      ]
+    },
     "to-regex-range@5.0.1": {
       "integrity": "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==",
       "dependencies": [
         "is-number"
       ]
+    },
+    "type-fest@4.41.0": {
+      "integrity": "sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA=="
+    },
+    "yocto-queue@1.2.1": {
+      "integrity": "sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg=="
     },
     "zod-to-json-schema@3.24.6_zod@3.25.48": {
       "integrity": "sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==",
@@ -170,21 +280,27 @@
     },
     "zod@3.25.48": {
       "integrity": "sha512-0X1mz8FtgEIvaxGjdIImYpZEaZMrund9pGXm3M6vM7Reba0e2eI71KPjSCGXBfwKDPwPoywf6waUKc3/tFvX2Q=="
+    },
+    "zustand@5.0.5_react@19.1.0": {
+      "integrity": "sha512-mILtRfKW9xM47hqxGIxCv12gXusoY/xTSHBYApXozR0HmQv299whhBeeAcRy+KrPPybzosvJBCOmVjq6x12fCg==",
+      "dependencies": [
+        "react"
+      ],
+      "optionalPeers": [
+        "react"
+      ]
     }
   },
   "workspace": {
     "dependencies": [
+      "jsr:@artifact/client@^0.0.138",
       "jsr:@std/expect@^1.0.16",
+      "npm:ai@^5.0.0-beta.2",
       "npm:fast-glob@^3.3.3",
       "npm:glob-to-regexp@~0.4.1",
-      "npm:gpt-tokenizer@^2.9.0"
-    ],
-    "members": {
-      "chats": {
-        "dependencies": [
-          "npm:ai@^5.0.0-beta.2"
-        ]
-      }
-    }
+      "npm:gpt-tokenizer@^2.9.0",
+      "npm:it-pushable@^3.2.3",
+      "npm:zod@3.25.48"
+    ]
   }
 }

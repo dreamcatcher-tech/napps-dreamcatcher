@@ -4,19 +4,31 @@
     "useUnknownInCatchVariables": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
+    "lib": [
+      "deno.ns",
+      "deno.unstable",
+      "deno.window",
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable"
+    ],
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "jsxImportSourceTypes": "@types/react"
   },
   "tasks": {
-    "lint": "deno lint",
-    "test": "deno test -A --coverage --parallel",
-    "ok": "deno task lint && deno fmt --check && deno task test",
+    "test": "deno test -A --trace-leaks --parallel",
+    "ok": "deno check && deno lint && deno fmt --check && deno publish --dry-run --allow-dirty && deno task test",
     "typos": "typos -c ./.github/workflows/typos.toml",
-    "watch": "deno test -A --watch --trace-leaks",
-    "bump": "deno task bump && deno check"
+    "watch": "deno test -A --watch --trace-leaks"
   },
-  "exclude": ["cov", "coverage", "docs", "**/vendor-docs/**"],
+  "exclude": [
+    "cov",
+    "coverage",
+    "**/vendor-docs/**",
+    "vite-project/.vite",
+    "vite-project/dist"
+  ],
   "lint": {
     "rules": {
       "tags": [],
@@ -34,14 +46,19 @@
     "semiColons": false,
     "singleQuote": true,
     "lineWidth": 80,
-    "proseWrap": "always"
+    "proseWrap": "always",
+    "exclude": ["reasoning/**"]
   },
   "workspace": ["./concat", "./crm", "./chats"],
   "imports": {
+    "@artifact/client": "jsr:@artifact/client@^0.0.138",
     "@std/expect": "jsr:@std/expect@^1.0.16",
     "fast-glob": "npm:fast-glob@^3.3.3",
     "glob-to-regexp": "npm:glob-to-regexp@^0.4.1",
-    "gpt-tokenizer": "npm:gpt-tokenizer@^2.9.0"
+    "gpt-tokenizer": "npm:gpt-tokenizer@^2.9.0",
+    "ai": "npm:ai@^5.0.0-beta.2",
+    "it-pushable": "npm:it-pushable@^3.2.3",
+    "zod": "npm:zod@3.25.48"
   },
   "nodeModulesDir": "auto"
 }
