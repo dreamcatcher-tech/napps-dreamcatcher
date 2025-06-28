@@ -36,7 +36,7 @@
     "lineWidth": 80,
     "proseWrap": "always"
   },
-  "workspace": ["./concat"],
+  "workspace": ["./concat", "./crm", "./chats"],
   "imports": {
     "@std/expect": "jsr:@std/expect@^1.0.16",
     "fast-glob": "npm:fast-glob@^3.3.3",

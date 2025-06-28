@@ -5,6 +5,7 @@
     "jsr:@std/expect@^1.0.16": "1.0.16",
     "jsr:@std/internal@^1.0.6": "1.0.7",
     "jsr:@std/internal@^1.0.7": "1.0.7",
+    "npm:ai@^5.0.0-beta.2": "5.0.0-canary.24_zod@3.25.48",
     "npm:fast-glob@^3.3.3": "3.3.3",
     "npm:glob-to-regexp@~0.4.1": "0.4.1",
     "npm:gpt-tokenizer@^2.9.0": "2.9.0"
@@ -28,6 +29,21 @@
     }
   },
   "npm": {
+    "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.48": {
+      "integrity": "sha512-4IJw6/wkWYLYfFYPvCs5go0L/sBRZsIRW1l/R6LniF4WjAH2+R4dMbESgBmzx+Z2+W+W6gFeK8dnQByn7vaA/w==",
+      "dependencies": [
+        "@ai-sdk/provider",
+        "@standard-schema/spec",
+        "zod",
+        "zod-to-json-schema"
+      ]
+    },
+    "@ai-sdk/provider@2.0.0-canary.14": {
+      "integrity": "sha512-aN83hjdjDCyhkOdulwMsxmGb91owS+bCSe6FWg1TEwusNM35vv020nY//Gid/0NdIpVkZJGzAajgCWrnno2zzA==",
+      "dependencies": [
+        "json-schema"
+      ]
+    },
     "@nodelib/fs.scandir@2.1.5": {
       "integrity": "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==",
       "dependencies": [
@@ -43,6 +59,21 @@
       "dependencies": [
         "@nodelib/fs.scandir",
         "fastq"
+      ]
+    },
+    "@opentelemetry/api@1.9.0": {
+      "integrity": "sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg=="
+    },
+    "@standard-schema/spec@1.0.0": {
+      "integrity": "sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA=="
+    },
+    "ai@5.0.0-canary.24_zod@3.25.48": {
+      "integrity": "sha512-vqaMmM6XFwjz9mNjox9ehjkWFwXbSchhor5MiqgKZ1qRyoTvoYzAt6oCZwg5kN5jXNQ3rZVuyE8N3BbPbwma2Q==",
+      "dependencies": [
+        "@ai-sdk/provider",
+        "@ai-sdk/provider-utils",
+        "@opentelemetry/api",
+        "zod"
       ]
     },
     "braces@3.0.3": {
@@ -97,6 +128,9 @@
     "is-number@7.0.0": {
       "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng=="
     },
+    "json-schema@0.4.0": {
+      "integrity": "sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA=="
+    },
     "merge2@1.4.1": {
       "integrity": "sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg=="
     },
@@ -127,6 +161,15 @@
       "dependencies": [
         "is-number"
       ]
+    },
+    "zod-to-json-schema@3.24.6_zod@3.25.48": {
+      "integrity": "sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==",
+      "dependencies": [
+        "zod"
+      ]
+    },
+    "zod@3.25.48": {
+      "integrity": "sha512-0X1mz8FtgEIvaxGjdIImYpZEaZMrund9pGXm3M6vM7Reba0e2eI71KPjSCGXBfwKDPwPoywf6waUKc3/tFvX2Q=="
     }
   },
   "workspace": {
@@ -135,6 +178,13 @@
       "npm:fast-glob@^3.3.3",
       "npm:glob-to-regexp@~0.4.1",
       "npm:gpt-tokenizer@^2.9.0"
-    ]
+    ],
+    "members": {
+      "chats": {
+        "dependencies": [
+          "npm:ai@^5.0.0-beta.2"
+        ]
+      }
+    }
   }
 }
