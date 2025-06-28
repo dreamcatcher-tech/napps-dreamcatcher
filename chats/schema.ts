@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from '@artifact/client/zod'
 
 export default {
   name: '@dreamcatcher/chats',

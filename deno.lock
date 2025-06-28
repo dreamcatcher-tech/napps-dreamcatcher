@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@artifact/client@^0.0.138": "0.0.138",
+    "jsr:@artifact/client@^0.0.139": "0.0.139",
     "jsr:@libs/xml@7": "7.0.0",
     "jsr:@std/assert@^1.0.13": "1.0.13",
     "jsr:@std/expect@^1.0.16": "1.0.16",
@@ -20,7 +20,7 @@
     "npm:fast-deep-equal@^3.1.3": "3.1.3",
     "npm:fast-glob@^3.3.3": "3.3.3",
     "npm:glob-to-regexp@~0.4.1": "0.4.1",
-    "npm:gpt-tokenizer@^2.9.0": "2.9.0",
+    "npm:gpt-tokenizer@^3.0.1": "3.0.1",
     "npm:immutable@5.1.2": "5.1.2",
     "npm:it-pushable@3.2.3": "3.2.3",
     "npm:it-pushable@^3.2.3": "3.2.3",
@@ -33,8 +33,8 @@
     "npm:zustand@5.0.5": "5.0.5_react@19.1.0"
   },
   "jsr": {
-    "@artifact/client@0.0.138": {
-      "integrity": "88038f546c3d3e30b0a8e57aa255f6fc24e01dd74c5d778e346a3909495eeec8",
+    "@artifact/client@0.0.139": {
+      "integrity": "9d878ae85df09449629e3e1ece0a64fb3dbe7648b7a37853f103e0dacd258b89",
       "dependencies": [
         "npm:@msgpack/msgpack",
         "npm:@noble/hashes",
@@ -194,8 +194,8 @@
     "glob-to-regexp@0.4.1": {
       "integrity": "sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw=="
     },
-    "gpt-tokenizer@2.9.0": {
-      "integrity": "sha512-YSpexBL/k4bfliAzMrRqn3M6+it02LutVyhVpDeMKrC/O9+pCe/5s8U2hYKa2vFLD5/vHhsKc8sOn/qGqII8Kg=="
+    "gpt-tokenizer@3.0.1": {
+      "integrity": "sha512-5jdaspBq/w4sWw322SvQj1Fku+CN4OAfYZeeEg8U7CWtxBz+zkxZ3h0YOHD43ee+nZYZ5Ud70HRN0ANcdIj4qg=="
     },
     "immutable@5.1.2": {
       "integrity": "sha512-qHKXW1q6liAk1Oys6umoaZbDRqjcjgSrbnrifHsfsttza7zcvRAsL7mMV6xWcyhwQy7Xj5v4hhbr6b+iDYwlmQ=="
@@ -313,7 +313,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@artifact/client@^0.0.138",
+      "jsr:@artifact/client@^0.0.139",
       "jsr:@libs/xml@7",
       "jsr:@std/expect@^1.0.16",
       "npm:@ai-sdk/openai@^2.0.0-beta.2",
@@ -323,10 +323,9 @@
       "npm:fast-deep-equal@^3.1.3",
       "npm:fast-glob@^3.3.3",
       "npm:glob-to-regexp@~0.4.1",
-      "npm:gpt-tokenizer@^2.9.0",
+      "npm:gpt-tokenizer@^3.0.1",
       "npm:it-pushable@^3.2.3",
-      "npm:p-limit@^6.2.0",
-      "npm:zod@3.25.48"
+      "npm:p-limit@^6.2.0"
     ]
   }
 }
