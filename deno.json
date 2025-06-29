@@ -55,6 +55,7 @@
     "@artifact/client": "jsr:@artifact/client@^0.0.139",
     "@libs/xml": "jsr:@libs/xml@^7.0.0",
     "@std/expect": "jsr:@std/expect@^1.0.16",
+    "@types/node": "npm:@types/node@^24.0.7",
     "commander": "npm:commander@^14.0.0",
     "debug": "npm:debug@^4.4.1",
     "fast-deep-equal": "npm:fast-deep-equal@^3.1.3",
