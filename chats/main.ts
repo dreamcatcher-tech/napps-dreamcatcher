@@ -1,6 +1,8 @@
 import type { Implementations } from '@artifact/client/tools'
 import type schema from './schema.ts'
 import { pushable } from 'it-pushable'
+import { streamText } from 'ai'
+import { openai } from '@ai-sdk/openai'
 type Tools = Implementations<typeof schema>
 
 export const newChat: Tools['newChat'] = async ({ config }) => {
@@ -11,15 +13,14 @@ export const newChat: Tools['newChat'] = async ({ config }) => {
 }
 
 export const infer: Tools['infer'] = () => {
-  // const { text } = await generateText({
-  //   model: openai('o3-mini'),
-  //   prompt: 'What is love?',
-  // })
+  const { textStream, usage, totalUsage } = streamText({
+    model: openai('gpt-4.1'),
+    prompt: 'Write a poem about embedding models.',
+  })
+  return textStream
 
-  const stream = pushable<string>({ objectMode: true })
-  stream.push('123')
-  stream.push('456')
-  stream.push('789')
-  stream.end()
-  return stream
+  // consume it as quickly as possible
+  // relay it down to a pushable so the client can error but the stream will
+  // finish
+  // when completed, save the final message to the disk
 }
