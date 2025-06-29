@@ -3,7 +3,7 @@ import { provision } from './provision.ts'
 import type { WatchMoneyworksConfig } from './types.ts'
 import { expect } from '@std/expect'
 import { createServer } from '@artifact/server/server'
-import { generateTestToken } from '../server/jwts.ts'
+import { generateTestToken } from '@artifact/server/jwts'
 
 const MONEYWORKS_SECURE_URL = 'http://fake-moneyworks.com'
 const ARTIFACT_SERVER_URL = 'http://fake-artifact.com'
@@ -12,9 +12,8 @@ const ARTIFACT_REPO = ''
 const appId = 'test-app'
 
 async function setup() {
-  const seed = true
   const { token, verificationKey } = await generateTestToken(appId)
-  const server = createServer({ appId, verificationKey }, seed)
+  const server = createServer({ appId, verificationKey })
   const { app } = server
 
   const original = globalThis.fetch

@@ -53,6 +53,7 @@
   "imports": {
     "@ai-sdk/openai": "npm:@ai-sdk/openai@^2.0.0-beta.2",
     "@artifact/client": "jsr:@artifact/client@^0.0.139",
+    "@artifact/server": "jsr:@artifact/server@^0.0.37",
     "@artifact/utils-server": "jsr:@artifact/utils-server@^0.0.27",
     "@libs/xml": "jsr:@libs/xml@^7.0.0",
     "@std/assert": "jsr:@std/assert@^1.0.13",

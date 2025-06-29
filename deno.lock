@@ -1,44 +1,112 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@artifact/client@^0.0.117": "0.0.117",
+    "jsr:@artifact/client@^0.0.132": "0.0.132",
+    "jsr:@artifact/client@^0.0.134": "0.0.134",
     "jsr:@artifact/client@^0.0.139": "0.0.139",
+    "jsr:@artifact/git@^0.0.32": "0.0.32",
+    "jsr:@artifact/isolation@^0.0.31": "0.0.31",
+    "jsr:@artifact/provider@^0.0.36": "0.0.36",
+    "jsr:@artifact/server@^0.0.37": "0.0.37",
+    "jsr:@artifact/test@^0.0.27": "0.0.27",
+    "jsr:@artifact/tigris@^0.0.41": "0.0.41",
+    "jsr:@artifact/utils-server@^0.0.26": "0.0.26",
     "jsr:@artifact/utils-server@^0.0.27": "0.0.27",
+    "jsr:@deno/kv-utils@~0.1.3": "0.1.3",
+    "jsr:@dreamcatcher/s3-lite-client@0.9.0": "0.9.0",
+    "jsr:@hono/hono@4.7.11": "4.7.11",
+    "jsr:@kitsonk/kv-toolbox@~0.28.1": "0.28.1",
     "jsr:@libs/xml@7": "7.0.0",
+    "jsr:@panva/jose@6.0.11": "6.0.11",
+    "jsr:@std/assert@1.0.13": "1.0.13",
     "jsr:@std/assert@^1.0.13": "1.0.13",
     "jsr:@std/async@^1.0.13": "1.0.13",
+    "jsr:@std/bytes@1": "1.0.6",
+    "jsr:@std/bytes@^1.0.5": "1.0.6",
+    "jsr:@std/crypto@1": "1.0.5",
     "jsr:@std/dotenv@0.225.5": "0.225.5",
     "jsr:@std/dotenv@~0.225.5": "0.225.5",
+    "jsr:@std/encoding@1": "1.0.10",
     "jsr:@std/expect@^1.0.16": "1.0.16",
     "jsr:@std/internal@^1.0.6": "1.0.7",
     "jsr:@std/internal@^1.0.7": "1.0.7",
+    "jsr:@std/media-types@1": "1.1.0",
+    "jsr:@std/streams@1.0.9": "1.0.9",
     "npm:@ai-sdk/openai@^2.0.0-beta.2": "2.0.0-canary.20_zod@3.25.48",
     "npm:@msgpack/msgpack@3.1.2": "3.1.2",
+    "npm:@noble/ciphers@1.3.0": "1.3.0",
     "npm:@noble/hashes@1.8.0": "1.8.0",
     "npm:@open-iframe-resizer/core@^1.6.0": "1.6.0",
     "npm:@open-iframe-resizer/react@^1.6.0": "1.6.0_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@opentelemetry/api@1.9.0": "1.9.0",
+    "npm:@scure/base@1.2.6": "1.2.6",
     "npm:@types/node@^24.0.7": "24.0.7",
     "npm:ai@^5.0.0-beta.2": "5.0.0-canary.24_zod@3.25.48",
     "npm:commander@14": "14.0.0",
     "npm:debug@4.4.1": "4.4.1",
     "npm:debug@^4.4.1": "4.4.1",
+    "npm:diff3@0.0.4": "0.0.4",
     "npm:fast-deep-equal@3.1.3": "3.1.3",
     "npm:fast-deep-equal@^3.1.3": "3.1.3",
     "npm:fast-glob@^3.3.3": "3.3.3",
     "npm:glob-to-regexp@~0.4.1": "0.4.1",
     "npm:gpt-tokenizer@^3.0.1": "3.0.1",
     "npm:immutable@5.1.2": "5.1.2",
+    "npm:isomorphic-git@1.27.1": "1.27.1",
     "npm:it-pushable@3.2.3": "3.2.3",
     "npm:it-pushable@^3.2.3": "3.2.3",
     "npm:p-limit@6.2.0": "6.2.0",
     "npm:p-limit@^6.2.0": "6.2.0",
+    "npm:p-queue@8.1.0": "8.1.0",
     "npm:path-browserify@1.0.1": "1.0.1",
     "npm:react@19.1.0": "19.1.0",
     "npm:serialize-error@12.0.0": "12.0.0",
+    "npm:ulid@3.0.0": "3.0.0",
+    "npm:zod@3.25.28": "3.25.28",
     "npm:zod@3.25.48": "3.25.48",
     "npm:zustand@5.0.5": "5.0.5_react@19.1.0"
   },
   "jsr": {
+    "@artifact/client@0.0.117": {
+      "integrity": "72c5a6be1cb576e68c808b4a8e0da44b10a42753ceb694b378611768cc1f8df7",
+      "dependencies": [
+        "npm:@noble/hashes",
+        "npm:debug@4.4.1",
+        "npm:fast-deep-equal@3.1.3",
+        "npm:path-browserify",
+        "npm:serialize-error",
+        "npm:zod@3.25.48"
+      ]
+    },
+    "@artifact/client@0.0.132": {
+      "integrity": "40ca901310fa26564fbb91c3a2ce9ae1966c4d2fa35bf85915861fd37c8db958",
+      "dependencies": [
+        "npm:@noble/hashes",
+        "npm:debug@4.4.1",
+        "npm:fast-deep-equal@3.1.3",
+        "npm:it-pushable@3.2.3",
+        "npm:path-browserify",
+        "npm:serialize-error",
+        "npm:zod@3.25.48"
+      ]
+    },
+    "@artifact/client@0.0.134": {
+      "integrity": "c961b3d86a12590aaa0d2ff613d3b5c0b65803896eef3ce6fe494c9f763b0cf4",
+      "dependencies": [
+        "npm:@msgpack/msgpack",
+        "npm:@noble/hashes",
+        "npm:debug@4.4.1",
+        "npm:fast-deep-equal@3.1.3",
+        "npm:immutable",
+        "npm:it-pushable@3.2.3",
+        "npm:p-limit@6.2.0",
+        "npm:path-browserify",
+        "npm:serialize-error",
+        "npm:zod@3.25.48",
+        "npm:zustand"
+      ]
+    },
     "@artifact/client@0.0.139": {
       "integrity": "9d878ae85df09449629e3e1ece0a64fb3dbe7648b7a37853f103e0dacd258b89",
       "dependencies": [
@@ -54,8 +122,98 @@
         "npm:path-browserify",
         "npm:react",
         "npm:serialize-error",
-        "npm:zod",
+        "npm:zod@3.25.48",
         "npm:zustand"
+      ]
+    },
+    "@artifact/git@0.0.32": {
+      "integrity": "5fc63f4f426a6fb188d572b57d2997014bd403f3855835f845b64ac9bedbbaf8",
+      "dependencies": [
+        "jsr:@artifact/client@^0.0.117",
+        "jsr:@artifact/utils-server@^0.0.26",
+        "npm:debug@4.4.1",
+        "npm:fast-deep-equal@3.1.3",
+        "npm:isomorphic-git",
+        "npm:it-pushable@3.2.3"
+      ]
+    },
+    "@artifact/isolation@0.0.31": {
+      "integrity": "77775d8a2f7743ffd6f1a41126c0a6f0274a0b1f7657d43d287d375c732269f7",
+      "dependencies": [
+        "jsr:@artifact/client@^0.0.132",
+        "jsr:@artifact/provider",
+        "jsr:@artifact/test",
+        "jsr:@artifact/utils-server@^0.0.26",
+        "jsr:@std/assert@1.0.13",
+        "npm:p-limit@6.2.0",
+        "npm:serialize-error",
+        "npm:zod@3.25.48"
+      ]
+    },
+    "@artifact/provider@0.0.36": {
+      "integrity": "3086b129afadbd8d90212fe21bd76095c12532188bf1111155aed694964b38cb",
+      "dependencies": [
+        "jsr:@artifact/client@^0.0.132",
+        "jsr:@artifact/git",
+        "jsr:@artifact/tigris",
+        "jsr:@artifact/utils-server@^0.0.26",
+        "jsr:@std/assert@1.0.13",
+        "npm:debug@4.4.1",
+        "npm:diff3",
+        "npm:fast-deep-equal@3.1.3",
+        "npm:isomorphic-git",
+        "npm:it-pushable@3.2.3",
+        "npm:p-queue",
+        "npm:path-browserify",
+        "npm:ulid"
+      ]
+    },
+    "@artifact/server@0.0.37": {
+      "integrity": "e760b4d4ee37d9c6b9b81e702e1c69ada5a1758c2b8230acd358bae042fd83c1",
+      "dependencies": [
+        "jsr:@artifact/client@^0.0.134",
+        "jsr:@artifact/isolation",
+        "jsr:@artifact/provider",
+        "jsr:@artifact/utils-server@^0.0.27",
+        "jsr:@hono/hono",
+        "jsr:@panva/jose",
+        "jsr:@std/assert@1.0.13",
+        "npm:@msgpack/msgpack",
+        "npm:@scure/base",
+        "npm:debug@4.4.1",
+        "npm:ulid"
+      ]
+    },
+    "@artifact/test@0.0.27": {
+      "integrity": "fae6fb57a11b3c409007c965937ac360de1749eac57e1fb145fe22f3e6f2e560",
+      "dependencies": [
+        "npm:zod@3.25.28"
+      ]
+    },
+    "@artifact/tigris@0.0.41": {
+      "integrity": "88e96f2c66f32908018c36ddb4c8a4749db776199e13e1f60c32755eef544f9b",
+      "dependencies": [
+        "jsr:@artifact/client@^0.0.132",
+        "jsr:@artifact/utils-server@^0.0.26",
+        "jsr:@dreamcatcher/s3-lite-client",
+        "jsr:@kitsonk/kv-toolbox",
+        "jsr:@std/assert@1.0.13",
+        "jsr:@std/dotenv@0.225.5",
+        "jsr:@std/streams",
+        "npm:@noble/ciphers",
+        "npm:@noble/hashes",
+        "npm:debug@4.4.1",
+        "npm:fast-deep-equal@3.1.3",
+        "npm:it-pushable@3.2.3",
+        "npm:p-limit@6.2.0"
+      ]
+    },
+    "@artifact/utils-server@0.0.26": {
+      "integrity": "1a3fcc798b42ba2cd3615bf17d897646de5c9889df7c24820d0d98fe7e850b71",
+      "dependencies": [
+        "jsr:@std/dotenv@0.225.5",
+        "npm:@opentelemetry/api",
+        "npm:zod@3.25.48"
       ]
     },
     "@artifact/utils-server@0.0.27": {
@@ -63,11 +221,33 @@
       "dependencies": [
         "jsr:@std/dotenv@0.225.5",
         "npm:@opentelemetry/api",
-        "npm:zod"
+        "npm:zod@3.25.48"
+      ]
+    },
+    "@deno/kv-utils@0.1.3": {
+      "integrity": "f3877510f82ce78a1946f6fc9727393d44421928c971572c18d90f9206448e98"
+    },
+    "@dreamcatcher/s3-lite-client@0.9.0": {
+      "integrity": "ee0193d99828c7d5e900ae3843e4604fa1a9e2cf89217ce1ad66fab9b886d845"
+    },
+    "@hono/hono@4.7.11": {
+      "integrity": "52b9395e4f2448fbaf82a6bd7925d15e59f4055037e74d6c2f657f3618b11193"
+    },
+    "@kitsonk/kv-toolbox@0.28.1": {
+      "integrity": "f0582d309de12da79c9707742616ae7e433ae05509ac044b19e7487ba1cf79d3",
+      "dependencies": [
+        "jsr:@deno/kv-utils",
+        "jsr:@std/bytes@1",
+        "jsr:@std/crypto",
+        "jsr:@std/encoding",
+        "jsr:@std/media-types"
       ]
     },
     "@libs/xml@7.0.0": {
       "integrity": "4fe581ec16d4a58fdc085c89f721e024f06afe7303d62ed4c24c12b6dec98ece"
+    },
+    "@panva/jose@6.0.11": {
+      "integrity": "90d3a31fbe29ab3ab64f5c8c7c413b8a962663d7c62eacd51cc7f41d9c42ccbf"
     },
     "@std/assert@1.0.13": {
       "integrity": "ae0d31e41919b12c656c742b22522c32fb26ed0cba32975cb0de2a273cb68b29",
@@ -78,18 +258,36 @@
     "@std/async@1.0.13": {
       "integrity": "1d76ca5d324aef249908f7f7fe0d39aaf53198e5420604a59ab5c035adc97c96"
     },
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/crypto@1.0.5": {
+      "integrity": "0dcfbb319fe0bba1bd3af904ceb4f948cde1b92979ec1614528380ed308a3b40"
+    },
     "@std/dotenv@0.225.5": {
       "integrity": "9ce6f9d0ec3311f74a32535aa1b8c62ed88b1ab91b7f0815797d77a6f60c922f"
+    },
+    "@std/encoding@1.0.10": {
+      "integrity": "8783c6384a2d13abd5e9e87a7ae0520a30e9f56aeeaa3bdf910a3eaaf5c811a1"
     },
     "@std/expect@1.0.16": {
       "integrity": "ceeef6dda21f256a5f0f083fcc0eaca175428b523359a9b1d9b3a1df11cc7391",
       "dependencies": [
-        "jsr:@std/assert",
+        "jsr:@std/assert@^1.0.13",
         "jsr:@std/internal@^1.0.7"
       ]
     },
     "@std/internal@1.0.7": {
       "integrity": "39eeb5265190a7bc5d5591c9ff019490bd1f2c3907c044a11b0d545796158a0f"
+    },
+    "@std/media-types@1.1.0": {
+      "integrity": "c9d093f0c05c3512932b330e3cc1fe1d627b301db33a4c2c2185c02471d6eaa4"
+    },
+    "@std/streams@1.0.9": {
+      "integrity": "a9d26b1988cdd7aa7b1f4b51e1c36c1557f3f252880fa6cc5b9f37078b1a5035",
+      "dependencies": [
+        "jsr:@std/bytes@^1.0.5"
+      ]
     }
   },
   "npm": {
@@ -98,7 +296,7 @@
       "dependencies": [
         "@ai-sdk/provider",
         "@ai-sdk/provider-utils",
-        "zod"
+        "zod@3.25.48"
       ]
     },
     "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.48": {
@@ -106,7 +304,7 @@
       "dependencies": [
         "@ai-sdk/provider",
         "@standard-schema/spec",
-        "zod",
+        "zod@3.25.48",
         "zod-to-json-schema"
       ]
     },
@@ -118,6 +316,9 @@
     },
     "@msgpack/msgpack@3.1.2": {
       "integrity": "sha512-JEW4DEtBzfe8HvUYecLU9e6+XJnKDlUAIve8FvPzF3Kzs6Xo/KuZkZJsDH0wJXl/qEZbeeE7edxDNY3kMs39hQ=="
+    },
+    "@noble/ciphers@1.3.0": {
+      "integrity": "sha512-2I0gnIVPtfnMw9ee9h1dJG7tp81+8Ob3OJb3Mv37rx5L40/b0i7djjCVvGOVqc9AEIQyvyu1i6ypKdFw8R8gQw=="
     },
     "@noble/hashes@1.8.0": {
       "integrity": "sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A=="
@@ -153,6 +354,9 @@
     "@opentelemetry/api@1.9.0": {
       "integrity": "sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg=="
     },
+    "@scure/base@1.2.6": {
+      "integrity": "sha512-g/nm5FgUa//MCj1gV09zTJTaM6KBAHqLN907YVQqf7zC49+DcO4B1so4ZX07Ef10Twr6nuqYEH9GEggFXA4Fmg=="
+    },
     "@standard-schema/spec@1.0.0": {
       "integrity": "sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA=="
     },
@@ -168,8 +372,11 @@
         "@ai-sdk/provider",
         "@ai-sdk/provider-utils",
         "@opentelemetry/api",
-        "zod"
+        "zod@3.25.48"
       ]
+    },
+    "async-lock@1.4.1": {
+      "integrity": "sha512-Az2ZTpuytrtqENulXwO3GGv1Bztugx6TT37NIo7imr/Qo0gsYiGtSdBa2B6fsXhTpVZDNfu1Qn3pk531e3q+nQ=="
     },
     "braces@3.0.3": {
       "integrity": "sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==",
@@ -177,14 +384,36 @@
         "fill-range"
       ]
     },
+    "clean-git-ref@2.0.1": {
+      "integrity": "sha512-bLSptAy2P0s6hU4PzuIMKmMJJSE6gLXGH1cntDu7bWJUksvuM+7ReOK61mozULErYvP6a15rnYl0zFDef+pyPw=="
+    },
     "commander@14.0.0": {
       "integrity": "sha512-2uM9rYjPvyq39NwLRqaiLtWHyDC1FvryJDa2ATTVims5YAS4PupsEQsDvP14FqhFr0P49CYDugi59xaxJlTXRA=="
+    },
+    "crc-32@1.2.2": {
+      "integrity": "sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==",
+      "bin": true
     },
     "debug@4.4.1": {
       "integrity": "sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==",
       "dependencies": [
         "ms"
       ]
+    },
+    "decompress-response@6.0.0": {
+      "integrity": "sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==",
+      "dependencies": [
+        "mimic-response"
+      ]
+    },
+    "diff3@0.0.3": {
+      "integrity": "sha512-iSq8ngPOt0K53A6eVr4d5Kn6GNrM2nQZtC740pzIriHtn4pOQ2lyzEXQMBeVcWERN0ye7fhBsk9PbLLQOnUx/g=="
+    },
+    "diff3@0.0.4": {
+      "integrity": "sha512-f1rQ7jXDn/3i37hdwRk9ohqcvLRH3+gEIgmA6qEM280WUOh7cOr3GXV8Jm5sPwUs46Nzl48SE8YNLGJoaLuodg=="
+    },
+    "eventemitter3@5.0.1": {
+      "integrity": "sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA=="
     },
     "fast-deep-equal@3.1.3": {
       "integrity": "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="
@@ -223,8 +452,14 @@
     "gpt-tokenizer@3.0.1": {
       "integrity": "sha512-5jdaspBq/w4sWw322SvQj1Fku+CN4OAfYZeeEg8U7CWtxBz+zkxZ3h0YOHD43ee+nZYZ5Ud70HRN0ANcdIj4qg=="
     },
+    "ignore@5.3.2": {
+      "integrity": "sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g=="
+    },
     "immutable@5.1.2": {
       "integrity": "sha512-qHKXW1q6liAk1Oys6umoaZbDRqjcjgSrbnrifHsfsttza7zcvRAsL7mMV6xWcyhwQy7Xj5v4hhbr6b+iDYwlmQ=="
+    },
+    "inherits@2.0.4": {
+      "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ=="
     },
     "is-extglob@2.1.1": {
       "integrity": "sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ=="
@@ -237,6 +472,23 @@
     },
     "is-number@7.0.0": {
       "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng=="
+    },
+    "isomorphic-git@1.27.1": {
+      "integrity": "sha512-X32ph5zIWfT75QAqW2l3JCIqnx9/GWd17bRRehmn3qmWc34OYbSXY6Cxv0o9bIIY+CWugoN4nQFHNA+2uYf2nA==",
+      "dependencies": [
+        "async-lock",
+        "clean-git-ref",
+        "crc-32",
+        "diff3@0.0.3",
+        "ignore",
+        "minimisted",
+        "pako",
+        "pify",
+        "readable-stream",
+        "sha.js",
+        "simple-get"
+      ],
+      "bin": true
     },
     "it-pushable@3.2.3": {
       "integrity": "sha512-gzYnXYK8Y5t5b/BnJUr7glfQLO4U5vyb05gPx/TyTw+4Bv1zM9gFk4YsOrnulWefMewlphCjKkakFvj1y99Tcg==",
@@ -257,8 +509,26 @@
         "picomatch"
       ]
     },
+    "mimic-response@3.1.0": {
+      "integrity": "sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ=="
+    },
+    "minimist@1.2.8": {
+      "integrity": "sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA=="
+    },
+    "minimisted@2.0.1": {
+      "integrity": "sha512-1oPjfuLQa2caorJUM8HV8lGgWCc0qqAO1MNv/k05G4qslmsndV/5WdNZrqCiyqiz3wohia2Ij2B7w2Dr7/IyrA==",
+      "dependencies": [
+        "minimist"
+      ]
+    },
     "ms@2.1.3": {
       "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
+    },
+    "once@1.4.0": {
+      "integrity": "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==",
+      "dependencies": [
+        "wrappy"
+      ]
     },
     "p-defer@4.0.1": {
       "integrity": "sha512-Mr5KC5efvAK5VUptYEIopP1bakB85k2IWXaRC0rsh1uwn1L6M0LVml8OIQ4Gudg4oyZakf7FmeRLkMMtZW1i5A=="
@@ -269,11 +539,27 @@
         "yocto-queue"
       ]
     },
+    "p-queue@8.1.0": {
+      "integrity": "sha512-mxLDbbGIBEXTJL0zEx8JIylaj3xQ7Z/7eEVjcF9fJX4DBiH9oqe+oahYnlKKxm0Ci9TlWTyhSHgygxMxjIB2jw==",
+      "dependencies": [
+        "eventemitter3",
+        "p-timeout"
+      ]
+    },
+    "p-timeout@6.1.4": {
+      "integrity": "sha512-MyIV3ZA/PmyBN/ud8vV9XzwTrNtR4jFrObymZYnZqMmW0zA8Z17vnT0rBgFE/TlohB+YCHqXMgZzb3Csp49vqg=="
+    },
+    "pako@1.0.11": {
+      "integrity": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw=="
+    },
     "path-browserify@1.0.1": {
       "integrity": "sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g=="
     },
     "picomatch@2.3.1": {
       "integrity": "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="
+    },
+    "pify@4.0.1": {
+      "integrity": "sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g=="
     },
     "queue-microtask@1.2.3": {
       "integrity": "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
@@ -288,6 +574,14 @@
     "react@19.1.0": {
       "integrity": "sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg=="
     },
+    "readable-stream@3.6.2": {
+      "integrity": "sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==",
+      "dependencies": [
+        "inherits",
+        "string_decoder",
+        "util-deprecate"
+      ]
+    },
     "reusify@1.1.0": {
       "integrity": "sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw=="
     },
@@ -297,6 +591,9 @@
         "queue-microtask"
       ]
     },
+    "safe-buffer@5.2.1": {
+      "integrity": "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="
+    },
     "scheduler@0.26.0": {
       "integrity": "sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA=="
     },
@@ -304,6 +601,31 @@
       "integrity": "sha512-ZYkZLAvKTKQXWuh5XpBw7CdbSzagarX39WyZ2H07CDLC5/KfsRGlIXV8d4+tfqX1M7916mRqR1QfNHSij+c9Pw==",
       "dependencies": [
         "type-fest"
+      ]
+    },
+    "sha.js@2.4.11": {
+      "integrity": "sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==",
+      "dependencies": [
+        "inherits",
+        "safe-buffer"
+      ],
+      "bin": true
+    },
+    "simple-concat@1.0.1": {
+      "integrity": "sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q=="
+    },
+    "simple-get@4.0.1": {
+      "integrity": "sha512-brv7p5WgH0jmQJr1ZDDfKDOSeWWg+OVypG99A/5vYGPqJ6pxiaHLy8nxtFjBA7oMa01ebA9gfh1uMCFqOuXxvA==",
+      "dependencies": [
+        "decompress-response",
+        "once",
+        "simple-concat"
+      ]
+    },
+    "string_decoder@1.3.0": {
+      "integrity": "sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==",
+      "dependencies": [
+        "safe-buffer"
       ]
     },
     "to-regex-range@5.0.1": {
@@ -315,8 +637,18 @@
     "type-fest@4.41.0": {
       "integrity": "sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA=="
     },
+    "ulid@3.0.0": {
+      "integrity": "sha512-yvZYdXInnJve6LdlPIuYmURdS2NP41ZoF4QW7SXwbUKYt53+0eDAySO+rGSvM2O/ciuB/G+8N7GQrZ1mCJpuqw==",
+      "bin": true
+    },
     "undici-types@7.8.0": {
       "integrity": "sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw=="
+    },
+    "util-deprecate@1.0.2": {
+      "integrity": "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="
+    },
+    "wrappy@1.0.2": {
+      "integrity": "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ=="
     },
     "yocto-queue@1.2.1": {
       "integrity": "sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg=="
@@ -324,8 +656,11 @@
     "zod-to-json-schema@3.24.6_zod@3.25.48": {
       "integrity": "sha512-h/z3PKvcTcTetyjl1fkj79MHNEjm+HpD6NXheWjzOekY7kV+lwDYnHw+ivHkijnCSMz1yJaWBD9vu/Fcmk+vEg==",
       "dependencies": [
-        "zod"
+        "zod@3.25.48"
       ]
+    },
+    "zod@3.25.28": {
+      "integrity": "sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q=="
     },
     "zod@3.25.48": {
       "integrity": "sha512-0X1mz8FtgEIvaxGjdIImYpZEaZMrund9pGXm3M6vM7Reba0e2eI71KPjSCGXBfwKDPwPoywf6waUKc3/tFvX2Q=="
@@ -343,6 +678,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@artifact/client@^0.0.139",
+      "jsr:@artifact/server@^0.0.37",
       "jsr:@artifact/utils-server@^0.0.27",
       "jsr:@libs/xml@7",
       "jsr:@std/assert@^1.0.13",
