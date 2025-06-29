@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from '@artifact/client/zod'
 import { jsonSchema } from '@artifact/client/api'
 
 export const tablesSchema = z.enum(['Name', 'Transaction'])
@@ -21,10 +21,9 @@ export const watchMoneyworksConfig = z.object({
   artifactRepo: z.string().optional(),
   moneyworksBranch: z.array(z.string()).default(['moneyworks']),
   changesBranch: z.array(z.string()).default(['changes']),
-  pollingInterval: z.number().min(
-    10_000,
-    'Polling interval must be at least 10 seconds',
-  ),
+  pollingInterval: z
+    .number()
+    .min(10_000, 'Polling interval must be at least 10 seconds'),
   tables: z.array(tablesSchema).min(1),
 })
 
