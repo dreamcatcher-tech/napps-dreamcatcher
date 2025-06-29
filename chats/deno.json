@@ -2,7 +2,8 @@
   "name": "@dreamcatcher/chats",
   "version": "0.0.1",
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --watch main.ts",
+    "bump": "deno run -A jsr:@kellnerd/bump"
   },
   "exports": {
     ".": "./main.ts",

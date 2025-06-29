@@ -13,9 +13,14 @@
     "jsr:@artifact/tigris@^0.0.41": "0.0.41",
     "jsr:@artifact/utils-server@^0.0.26": "0.0.26",
     "jsr:@artifact/utils-server@^0.0.27": "0.0.27",
+    "jsr:@cliffy/command@^1.0.0-rc.7": "1.0.0-rc.7",
+    "jsr:@cliffy/flags@1.0.0-rc.7": "1.0.0-rc.7",
+    "jsr:@cliffy/internal@1.0.0-rc.7": "1.0.0-rc.7",
+    "jsr:@cliffy/table@1.0.0-rc.7": "1.0.0-rc.7",
     "jsr:@deno/kv-utils@~0.1.3": "0.1.3",
     "jsr:@dreamcatcher/s3-lite-client@0.9.0": "0.9.0",
     "jsr:@hono/hono@4.7.11": "4.7.11",
+    "jsr:@kellnerd/bump@~0.1.1": "0.1.1",
     "jsr:@kitsonk/kv-toolbox@~0.28.1": "0.28.1",
     "jsr:@libs/xml@7": "7.0.0",
     "jsr:@panva/jose@6.0.11": "6.0.11",
@@ -29,10 +34,13 @@
     "jsr:@std/dotenv@~0.225.5": "0.225.5",
     "jsr:@std/encoding@1": "1.0.10",
     "jsr:@std/expect@^1.0.16": "1.0.16",
+    "jsr:@std/fmt@~1.0.2": "1.0.8",
     "jsr:@std/internal@^1.0.6": "1.0.7",
     "jsr:@std/internal@^1.0.7": "1.0.7",
     "jsr:@std/media-types@1": "1.1.0",
+    "jsr:@std/semver@^1.0.3": "1.0.5",
     "jsr:@std/streams@1.0.9": "1.0.9",
+    "jsr:@std/text@~1.0.7": "1.0.14",
     "npm:@ai-sdk/openai@^2.0.0-beta.2": "2.0.0-canary.20_zod@3.25.48",
     "npm:@msgpack/msgpack@3.1.2": "3.1.2",
     "npm:@noble/ciphers@1.3.0": "1.3.0",
@@ -224,6 +232,31 @@
         "npm:zod@3.25.48"
       ]
     },
+    "@cliffy/command@1.0.0-rc.7": {
+      "integrity": "1288808d7a3cd18b86c24c2f920e47a6d954b7e23cadc35c8cbd78f8be41f0cd",
+      "dependencies": [
+        "jsr:@cliffy/flags",
+        "jsr:@cliffy/internal",
+        "jsr:@cliffy/table",
+        "jsr:@std/fmt",
+        "jsr:@std/text"
+      ]
+    },
+    "@cliffy/flags@1.0.0-rc.7": {
+      "integrity": "318d9be98f6a6417b108e03dec427dea96cdd41a15beb21d2554ae6da450a781",
+      "dependencies": [
+        "jsr:@std/text"
+      ]
+    },
+    "@cliffy/internal@1.0.0-rc.7": {
+      "integrity": "10412636ab3e67517d448be9eaab1b70c88eba9be22617b5d146257a11cc9b17"
+    },
+    "@cliffy/table@1.0.0-rc.7": {
+      "integrity": "9fdd9776eda28a0b397981c400eeb1aa36da2371b43eefe12e6ff555290e3180",
+      "dependencies": [
+        "jsr:@std/fmt"
+      ]
+    },
     "@deno/kv-utils@0.1.3": {
       "integrity": "f3877510f82ce78a1946f6fc9727393d44421928c971572c18d90f9206448e98"
     },
@@ -232,6 +265,13 @@
     },
     "@hono/hono@4.7.11": {
       "integrity": "52b9395e4f2448fbaf82a6bd7925d15e59f4055037e74d6c2f657f3618b11193"
+    },
+    "@kellnerd/bump@0.1.1": {
+      "integrity": "4b66749a399fbae6e9ba03d2597ed3de18a7fe319039f25651d28ab2262e8876",
+      "dependencies": [
+        "jsr:@cliffy/command",
+        "jsr:@std/semver"
+      ]
     },
     "@kitsonk/kv-toolbox@0.28.1": {
       "integrity": "f0582d309de12da79c9707742616ae7e433ae05509ac044b19e7487ba1cf79d3",
@@ -277,17 +317,26 @@
         "jsr:@std/internal@^1.0.7"
       ]
     },
+    "@std/fmt@1.0.8": {
+      "integrity": "71e1fc498787e4434d213647a6e43e794af4fd393ef8f52062246e06f7e372b7"
+    },
     "@std/internal@1.0.7": {
       "integrity": "39eeb5265190a7bc5d5591c9ff019490bd1f2c3907c044a11b0d545796158a0f"
     },
     "@std/media-types@1.1.0": {
       "integrity": "c9d093f0c05c3512932b330e3cc1fe1d627b301db33a4c2c2185c02471d6eaa4"
     },
+    "@std/semver@1.0.5": {
+      "integrity": "529f79e83705714c105ad0ba55bec0f9da0f24d2f726b6cc1c15e505cc2c0624"
+    },
     "@std/streams@1.0.9": {
       "integrity": "a9d26b1988cdd7aa7b1f4b51e1c36c1557f3f252880fa6cc5b9f37078b1a5035",
       "dependencies": [
         "jsr:@std/bytes@^1.0.5"
       ]
+    },
+    "@std/text@1.0.14": {
+      "integrity": "1a810108482414d19112b8b506ad0b7cba826000cd13f74274ffda6dd83d273f"
     }
   },
   "npm": {
@@ -680,6 +729,7 @@
       "jsr:@artifact/client@^0.0.139",
       "jsr:@artifact/server@^0.0.37",
       "jsr:@artifact/utils-server@^0.0.27",
+      "jsr:@kellnerd/bump@~0.1.1",
       "jsr:@libs/xml@7",
       "jsr:@std/assert@^1.0.13",
       "jsr:@std/async@^1.0.13",

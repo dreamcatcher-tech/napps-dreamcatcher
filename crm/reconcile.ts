@@ -78,7 +78,7 @@ export async function reconcile(
   const mwConfig = await mw.files.read.json(CONFIG_PATH, configSchema)
   ch.files.write.json(CONFIG_PATH, mwConfig)
 
-  log('commiting ch branch')
+  log('committing ch branch')
   assert(isCommitScope(mw.scope))
   const merged = await ch.branch.write.commit('synced', mw.scope)
   if (merged === ch) {

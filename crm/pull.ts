@@ -59,12 +59,12 @@ async function update(
 
     const msg = `Pulled ${batch.length} records for ${table}`
     // TODO should have a progress callback
-    const commited = await mw.branch.write.commit(msg)
-    if (commited === mw) {
+    const committed = await mw.branch.write.commit(msg)
+    if (committed === mw) {
       log('No different records detected')
     }
     log('commit complete:', msg)
-    mw = commited
+    mw = committed
   }
 
   return mw

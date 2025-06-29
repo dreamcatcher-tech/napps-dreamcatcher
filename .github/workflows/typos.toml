@@ -10,7 +10,7 @@ ws = "ws"
 typ = "typ"
 
 [files]
-extend-exclude = [ "*.json", ]
+extend-exclude = [ "*.json", "ai-sdk.llms.txt", "**/vendor-docs/**" ]
 
 
 
