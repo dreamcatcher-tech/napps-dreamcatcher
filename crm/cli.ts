@@ -117,8 +117,8 @@ program
       if (!('repo' in artifact.scope)) {
         throw new Error('Failed to provision artifact')
       }
-      console.log('setting ARTIFACT_REPO', artifact.scope.repo.name)
-      setEnvKey('ARTIFACT_REPO', artifact.scope.repo.name)
+      console.log('setting ARTIFACT_REPO', artifact.scope.repo)
+      setEnvKey('ARTIFACT_REPO', artifact.scope.repo)
 
       return
     }

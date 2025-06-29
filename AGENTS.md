@@ -74,6 +74,7 @@ Before committing changes or submitting results:
 
 1. Run `deno task ok` from the repository root. All tests and lints must pass.
 2. Ensure formatting with `deno fmt` (checked automatically by `ok`).
+3. NEVER fix the tests by modifying the tasks.
 
 Always verify a clean `git status` before finishing.
 
