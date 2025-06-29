@@ -1,6 +1,5 @@
 import type { Implementations } from '@artifact/client/tools'
 import type schema from './schema.ts'
-import { pushable } from 'it-pushable'
 import { streamText } from 'ai'
 import { openai } from '@ai-sdk/openai'
 type Tools = Implementations<typeof schema>

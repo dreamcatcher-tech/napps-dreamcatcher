@@ -37,14 +37,14 @@ export const provision = async (
 
   artifact = await artifact.repo.branches.default()
   artifact = await artifact.checkout({
-    branch: config.moneyworksBranch.join('/'),
+    branch: config.moneyworksBranch,
   })
     .exists()
 
   if (!('branch' in artifact.scope)) {
     artifact = await artifact.repo.branches.default()
     artifact = await artifact.branch.write.fork({
-      path: config.moneyworksBranch.join('/'),
+      path: config.moneyworksBranch,
     })
   }
   artifact = await artifact.latest()
@@ -65,12 +65,12 @@ export const provision = async (
 
   const prior = artifact
   artifact = await artifact.checkout({
-    branch: config.changesBranch.join('/'),
+    branch: config.changesBranch,
   }).exists()
 
   if (!('branch' in artifact.scope)) {
     artifact = await prior.branch.write.fork({
-      path: config.changesBranch.join('/'),
+      path: config.changesBranch,
     })
     for (const file of await artifact.files.read.ls()) {
       artifact.files.write.rm(file.path)

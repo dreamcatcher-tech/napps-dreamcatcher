@@ -94,8 +94,8 @@ program
       artifactServer,
       artifactKey,
       artifactRepo,
-      moneyworksBranch: ['moneyworks'],
-      changesBranch: ['changes'],
+      moneyworksBranch: 'moneyworks',
+      changesBranch: 'changes',
       pollingInterval: 10_000,
       tables: ['Name', 'Transaction'],
     })

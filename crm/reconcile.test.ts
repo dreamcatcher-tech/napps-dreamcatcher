@@ -17,8 +17,8 @@ async function setup() {
     moneyworksServer: 'http://mockserver/MockDoc',
     artifactServer: 'http://fake-artifact.com',
     artifactRepo: repoName,
-    moneyworksBranch: ['moneyworks'],
-    changesBranch: ['changes'],
+    moneyworksBranch: 'moneyworks',
+    changesBranch: 'changes',
     pollingInterval: 10000,
     tables: ['Name'],
   }
@@ -75,25 +75,22 @@ Deno.test(
     await reconcile(config, artifact, mwServer)
 
     // Capture state after first reconcile
-    const mwBefore = await artifact.checkout({
-      branch: config.moneyworksBranch.join('/'),
-    }).latest()
-    const chBefore = await artifact.checkout({
-      branch: config.changesBranch.join('/'),
-    })
+    const mwBefore = await artifact
+      .checkout({ branch: config.moneyworksBranch })
+      .latest()
+    const chBefore = await artifact
+      .checkout({ branch: config.changesBranch })
       .latest()
 
     // Call reconcile again with no changes
     await reconcile(config, artifact, mwServer)
 
     // Verify state hasn't changed
-    const mwAfter = await artifact.checkout({
-      branch: config.moneyworksBranch.join('/'),
-    })
+    const mwAfter = await artifact
+      .checkout({ branch: config.moneyworksBranch })
       .latest()
-    const chAfter = await artifact.checkout({
-      branch: config.changesBranch.join('/'),
-    })
+    const chAfter = await artifact
+      .checkout({ branch: config.changesBranch })
       .latest()
 
     expect((mwAfter.scope as CommitScope).commit).toEqual(
@@ -106,13 +103,11 @@ Deno.test(
     // Call reconcile a third time to be extra sure
     await reconcile(config, artifact, mwServer)
 
-    const mwFinal = await artifact.checkout({
-      branch: config.moneyworksBranch.join('/'),
-    })
+    const mwFinal = await artifact
+      .checkout({ branch: config.moneyworksBranch })
       .latest()
-    const chFinal = await artifact.checkout({
-      branch: config.changesBranch.join('/'),
-    })
+    const chFinal = await artifact
+      .checkout({ branch: config.changesBranch })
       .latest()
 
     expect((mwFinal.scope as CommitScope).commit).toEqual(

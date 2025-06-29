@@ -16,8 +16,8 @@ export async function reconcile(
   artifact: Artifact,
   moneyworks: MoneyworksServer,
 ): Promise<void> {
-  let ch = artifact.checkout({ branch: config.changesBranch.join('/') })
-  let mw = artifact.checkout({ branch: config.moneyworksBranch.join('/') })
+  let ch = artifact.checkout({ branch: config.changesBranch })
+  let mw = artifact.checkout({ branch: config.moneyworksBranch })
   ch = await ch.latest()
 
   const isChangesBlank = (await ch.shards.read.ls()).length === 0
