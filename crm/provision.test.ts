@@ -41,8 +41,8 @@ Deno.test(
       moneyworksServer: MONEYWORKS_SECURE_URL,
       artifactServer: ARTIFACT_SERVER_URL,
       artifactRepo: ARTIFACT_REPO,
-      moneyworksBranch: ['moneyworks_test'],
-      changesBranch: ['changes_test'],
+      moneyworksBranch: 'moneyworks_test',
+      changesBranch: 'changes_test',
       pollingInterval: 10000,
       tables: ['Name'],
     }
@@ -54,7 +54,7 @@ Deno.test(
     await artifact.exists()
 
     // 2. checkout the moneyworks branch
-    let mw = artifact.checkout({ branch: config.moneyworksBranch.join('/') })
+    let mw = artifact.checkout({ branch: config.moneyworksBranch })
     expect(mw.scope).toHaveProperty('branch')
     expect(mw.scope).not.toHaveProperty('commit')
 
@@ -70,7 +70,7 @@ Deno.test(
     const content = await mw.files.read.json(CONFIG_PATH)
     expect(content).toBeDefined()
 
-    const ch = artifact.checkout({ branch: config.changesBranch.join('/') })
+    const ch = artifact.checkout({ branch: config.changesBranch })
     const chExists = await ch.exists()
     expect(chExists.scope).toHaveProperty('branch')
     expect(chExists.scope).not.toHaveProperty('commit')

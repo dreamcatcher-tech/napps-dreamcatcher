@@ -19,8 +19,8 @@ export const watchMoneyworksConfig = z.object({
   moneyworksServer: z.string().url(),
   artifactServer: z.string().url(),
   artifactRepo: z.string().optional(),
-  moneyworksBranch: z.array(z.string()).default(['moneyworks']),
-  changesBranch: z.array(z.string()).default(['changes']),
+  moneyworksBranch: z.string().default('moneyworks'),
+  changesBranch: z.string().default('changes'),
   pollingInterval: z
     .number()
     .min(10_000, 'Polling interval must be at least 10 seconds'),
