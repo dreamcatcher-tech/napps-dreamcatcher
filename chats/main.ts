@@ -6,7 +6,7 @@ import { openai } from '@ai-sdk/openai'
 type Tools = Implementations<typeof schema>
 
 export const newChat: Tools['newChat'] = async ({ config }) => {
-  console.log(config)
+  // config can be used here for initialization
   return {
     chatId: '123',
   }

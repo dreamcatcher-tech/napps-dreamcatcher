@@ -42,7 +42,7 @@ export async function watch(
   artifact: Artifact,
   moneyworks: MoneyworksServer,
 ) {
-  const changes = artifact.checkout({ branch: config.changesBranch })
+  const changes = artifact.checkout({ branch: config.changesBranch.join('/') })
   const next = createCommitWatcher(changes.branch)
   let commitPromise = next()
 
