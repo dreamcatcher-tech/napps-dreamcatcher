@@ -16,8 +16,8 @@ export async function reconcile(
   artifact: Artifact,
   moneyworks: MoneyworksServer,
 ): Promise<void> {
-  let ch = artifact.checkout({ branch: config.changesBranch })
-  let mw = artifact.checkout({ branch: config.moneyworksBranch })
+  let ch = artifact.checkout({ branch: config.changesBranch.join('/') })
+  let mw = artifact.checkout({ branch: config.moneyworksBranch.join('/') })
   ch = await ch.latest()
 
   const isChangesBlank = (await ch.shards.read.ls()).length === 0
@@ -71,7 +71,7 @@ export async function reconcile(
     log('changes branch is blank, creating new one')
     await ch.branch.write.rm()
     assert('branch' in ch.scope)
-    await mw.branch.write.fork({ path: ch.scope.branch.join('/') })
+    await mw.branch.write.fork({ path: ch.scope.branch })
     log('new changes branch created')
     return
   }

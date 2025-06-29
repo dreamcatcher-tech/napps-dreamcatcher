@@ -32,11 +32,13 @@ export const provision = async (
     console.log('initializing artifact repo', artifactRepo)
     artifact = await artifact.tree.init(artifactRepo)
   } else {
-    artifact = artifact.checkout({ repo })
+    artifact = artifact.checkout({ repo: repo.name })
   }
 
   artifact = await artifact.repo.branches.default()
-  artifact = await artifact.checkout({ branch: config.moneyworksBranch })
+  artifact = await artifact.checkout({
+    branch: config.moneyworksBranch.join('/'),
+  })
     .exists()
 
   if (!('branch' in artifact.scope)) {
@@ -62,7 +64,9 @@ export const provision = async (
   }
 
   const prior = artifact
-  artifact = await artifact.checkout({ branch: config.changesBranch }).exists()
+  artifact = await artifact.checkout({
+    branch: config.changesBranch.join('/'),
+  }).exists()
 
   if (!('branch' in artifact.scope)) {
     artifact = await prior.branch.write.fork({

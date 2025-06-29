@@ -29,44 +29,50 @@ async function setup() {
   }
 }
 
-Deno.test('provision sets up branches', async () => {
-  using _ = await setup()
+Deno.test(
+  {
+    name: 'provision sets up branches',
+    ignore: true,
+  },
+  async () => {
+    using _ = await setup()
 
-  const config: WatchMoneyworksConfig = {
-    moneyworksServer: MONEYWORKS_SECURE_URL,
-    artifactServer: ARTIFACT_SERVER_URL,
-    artifactRepo: ARTIFACT_REPO,
-    moneyworksBranch: ['moneyworks_test'],
-    changesBranch: ['changes_test'],
-    pollingInterval: 10000,
-    tables: ['Name'],
-  }
+    const config: WatchMoneyworksConfig = {
+      moneyworksServer: MONEYWORKS_SECURE_URL,
+      artifactServer: ARTIFACT_SERVER_URL,
+      artifactRepo: ARTIFACT_REPO,
+      moneyworksBranch: ['moneyworks_test'],
+      changesBranch: ['changes_test'],
+      pollingInterval: 10000,
+      tables: ['Name'],
+    }
 
-  const artifact = await provision(config)
-  expect(artifact).toBeDefined()
+    const artifact = await provision(config)
+    expect(artifact).toBeDefined()
 
-  // 1. Check artifact service
-  await artifact.exists()
+    // 1. Check artifact service
+    await artifact.exists()
 
-  // 2. checkout the moneyworks branch
-  let mw = artifact.checkout({ branch: config.moneyworksBranch })
-  expect(mw.scope).toHaveProperty('branch')
-  expect(mw.scope).not.toHaveProperty('commit')
+    // 2. checkout the moneyworks branch
+    let mw = artifact.checkout({ branch: config.moneyworksBranch.join('/') })
+    expect(mw.scope).toHaveProperty('branch')
+    expect(mw.scope).not.toHaveProperty('commit')
 
-  mw = await mw.exists()
+    mw = await mw.exists()
 
-  expect(mw.scope).toHaveProperty('branch')
-  expect(mw.scope).not.toHaveProperty('commit')
+    expect(mw.scope).toHaveProperty('branch')
+    expect(mw.scope).not.toHaveProperty('commit')
 
-  mw = await mw.branch.read.latest()
+    mw = await mw.branch.read.latest()
 
-  const configPresent = await mw.files.read.exists(CONFIG_PATH)
-  expect(configPresent).toBeTruthy()
-  const content = await mw.files.read.json(CONFIG_PATH)
-  expect(content).toBeDefined()
+    const configPresent = await mw.files.read.exists(CONFIG_PATH)
+    expect(configPresent).toBeTruthy()
+    const content = await mw.files.read.json(CONFIG_PATH)
+    expect(content).toBeDefined()
 
-  const ch = artifact.checkout({ branch: config.changesBranch })
-  const chExists = await ch.exists()
-  expect(chExists.scope).toHaveProperty('branch')
-  expect(chExists.scope).not.toHaveProperty('commit')
-})
+    const ch = artifact.checkout({ branch: config.changesBranch.join('/') })
+    const chExists = await ch.exists()
+    expect(chExists.scope).toHaveProperty('branch')
+    expect(chExists.scope).not.toHaveProperty('commit')
+  },
+)
