@@ -19,10 +19,11 @@ export async function reconcile(
   let ch = artifact.checkout({ branch: config.changesBranch })
   let mw = artifact.checkout({ branch: config.moneyworksBranch })
   ch = await ch.latest()
+  let hasChanges = false
 
   const isChangesBlank = (await ch.shards.read.ls()).length === 0
   for (const table of config.tables) {
-    mw = await pull(moneyworks, table, artifact)
+    mw = await pull(moneyworks, table, mw)
 
     if (await isChangesSynced(mw, ch)) {
       log('changes are still synced')
@@ -65,6 +66,15 @@ export async function reconcile(
     await Promise.all(cpPromises)
 
     log('branch sync complete')
+
+    if (
+      mwDiff.added.length === 0 &&
+      mwDiff.modified.length === 0 &&
+      mwDiff.removed.length === 0
+    ) {
+      continue
+    }
+    hasChanges = true
   }
 
   if (isChangesBlank) {
@@ -77,6 +87,11 @@ export async function reconcile(
   }
   const mwConfig = await mw.files.read.json(CONFIG_PATH, configSchema)
   ch.files.write.json(CONFIG_PATH, mwConfig)
+
+  if (!hasChanges) {
+    log('no changes to changes branch')
+    return
+  }
 
   log('committing ch branch')
   assert(isCommitScope(mw.scope))

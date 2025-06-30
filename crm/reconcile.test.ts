@@ -5,10 +5,7 @@ import { provision } from './provision.ts'
 import type { WatchMoneyworksConfig } from './types.ts'
 import { reconcile } from './reconcile.ts'
 import type { CommitScope } from '@artifact/client/api'
-import { createServer } from '@artifact/server/server'
-import { generateTestToken } from '@artifact/server/jwts'
-
-const appId = 'test-app'
+import { createMockArtifact } from '@artifact/client/mock'
 
 async function setup() {
   const { mwServer, mockData } = setupMockServer()
@@ -23,38 +20,19 @@ async function setup() {
     tables: ['Name'],
   }
 
-  const seed = true
-  const { token, verificationKey } = await generateTestToken(appId)
-  const server = createServer(
-    { appId, verificationKey },
-    { seedless: false },
-  )
-  const original = globalThis.fetch
-  globalThis.fetch = (input, init) =>
-    Promise.resolve(server.app.request(input, init))
+  const artifact = createMockArtifact()
 
-  return {
-    mwServer,
-    mockData,
-    config,
-    server,
-    token,
-    async [Symbol.asyncDispose]() {
-      await server.close()
-      globalThis.fetch = original
-    },
-  }
+  return { mwServer, mockData, config, artifact }
 }
 
 Deno.test(
   {
     name:
       'reconcile is idempotent - calling it multiple times with no changes has no effect',
-    ignore: true,
   },
   async () => {
-    await using fixtures = await setup()
-    const { mwServer, mockData, config } = fixtures
+    const fixtures = await setup()
+    let { mwServer, mockData, config, artifact } = fixtures
     const table = config.tables[0]
     assert(table)
 
@@ -69,7 +47,7 @@ Deno.test(
       },
     }])
 
-    const artifact = await provision(config)
+    artifact = await provision(config, 0, artifact)
 
     // First reconcile to get initial state
     await reconcile(config, artifact, mwServer)

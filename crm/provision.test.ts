@@ -2,41 +2,17 @@ import { CONFIG_PATH } from './types.ts'
 import { provision } from './provision.ts'
 import type { WatchMoneyworksConfig } from './types.ts'
 import { expect } from '@std/expect'
-import { createServer } from '@artifact/server/server'
-import { generateTestToken } from '@artifact/server/jwts'
+import { createMockArtifact } from '@artifact/client/mock'
 
 const MONEYWORKS_SECURE_URL = 'http://fake-moneyworks.com'
 const ARTIFACT_SERVER_URL = 'http://fake-artifact.com'
-const ARTIFACT_REPO = ''
-
-const appId = 'test-app'
-
-async function setup() {
-  const { token, verificationKey } = await generateTestToken(appId)
-  const server = createServer({ appId, verificationKey })
-  const { app } = server
-
-  const original = globalThis.fetch
-  globalThis.fetch = (input, init) => Promise.resolve(app.request(input, init))
-
-  return {
-    app,
-    token,
-    [Symbol.dispose]: () => {
-      globalThis.fetch = original
-      server.close()
-    },
-  }
-}
+const ARTIFACT_REPO = 'test-provision'
 
 Deno.test(
   {
     name: 'provision sets up branches',
-    ignore: true,
   },
   async () => {
-    using _ = await setup()
-
     const config: WatchMoneyworksConfig = {
       moneyworksServer: MONEYWORKS_SECURE_URL,
       artifactServer: ARTIFACT_SERVER_URL,
@@ -47,7 +23,8 @@ Deno.test(
       tables: ['Name'],
     }
 
-    const artifact = await provision(config)
+    let artifact = createMockArtifact()
+    artifact = await provision(config, 0, artifact)
     expect(artifact).toBeDefined()
 
     // 1. Check artifact service
