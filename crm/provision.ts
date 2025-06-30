@@ -1,6 +1,7 @@
 // deno-lint-ignore-file no-console
 import equal from 'fast-deep-equal'
 import { createWebArtifact } from '@artifact/client'
+import type { Artifact } from '@artifact/client/api'
 import {
   type Config,
   CONFIG_PATH,
@@ -10,13 +11,16 @@ import { generateMachineToken } from '@artifact/server/jwts'
 export const provision = async (
   config: WatchMoneyworksConfig,
   startFrom = 0,
+  artifact?: Artifact,
 ) => {
   const { artifactServer } = config
   const { artifactRepo = 'hamr' } = config
   const identity = 'did:example:artifact-tests'
   // TODO have to insert this token in the repo somehow
-  const token = await generateMachineToken(artifactRepo)
-  let artifact = await createWebArtifact(artifactServer, identity, token)
+  if (!artifact) {
+    const token = await generateMachineToken(artifactRepo)
+    artifact = await createWebArtifact(artifactServer, identity, token)
+  }
 
   const superRepos = await artifact.super.ls()
   const [home] = superRepos
@@ -41,7 +45,7 @@ export const provision = async (
   })
     .exists()
 
-  if (!('branch' in artifact.scope)) {
+  if (!('commit' in artifact.scope)) {
     artifact = await artifact.repo.branches.default()
     artifact = await artifact.branch.write.fork({
       path: config.moneyworksBranch,
@@ -68,7 +72,7 @@ export const provision = async (
     branch: config.changesBranch,
   }).exists()
 
-  if (!('branch' in artifact.scope)) {
+  if (!('commit' in artifact.scope)) {
     artifact = await prior.branch.write.fork({
       path: config.changesBranch,
     })

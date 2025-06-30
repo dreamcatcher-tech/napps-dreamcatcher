@@ -38,7 +38,7 @@ export function createMockFetch(mockData: Map<string, MoneyworksRecord[]>) {
     const mwTime = searchParam.match(/\d{14}/)?.[0]
     const since = mwTime ? parseMoneyworksTime(mwTime) : 0
     const rows = mockData.get(table) ?? []
-    const filtered = rows.filter((r) => r.lastModified >= since)
+    const filtered = rows.filter((r) => r.lastModified > since)
     const xmlOutput = stringifyXmlRecords(table, filtered)
     return new Response(xmlOutput, { status: 200 })
   }
