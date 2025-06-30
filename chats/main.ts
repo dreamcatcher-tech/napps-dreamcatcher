@@ -3,12 +3,12 @@ import type { Implementations } from '@artifact/client/tools'
 import { useArtifact } from '@artifact/utils-server'
 import type schema from './schema.ts'
 import {
-  assistantModelMessageSchema,
-  DefaultChatTransport,
+  // assistantModelMessageSchema,
+  // DefaultChatTransport,
   streamText,
-  systemModelMessageSchema,
-  toolModelMessageSchema,
-  userModelMessageSchema,
+  // systemModelMessageSchema,
+  // toolModelMessageSchema,
+  // userModelMessageSchema,
 } from 'ai'
 // message will always be one of these types, as well as:
 // 1. a config message, which represents model settings for the call

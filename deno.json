@@ -72,7 +72,8 @@
     "ai": "npm:ai@^5.0.0-beta.3",
     "it-pushable": "npm:it-pushable@^3.2.3",
     "p-limit": "npm:p-limit@^6.2.0",
-    "ulid": "npm:ulid@^3.0.1"
+    "ulid": "npm:ulid@^3.0.1",
+    "zod": "npm:zod@^3.25.67"
   },
   "nodeModulesDir": "auto"
 }

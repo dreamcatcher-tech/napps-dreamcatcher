@@ -47,7 +47,7 @@
     "jsr:@std/streams@1.0.9": "1.0.9",
     "jsr:@std/text@~1.0.7": "1.0.14",
     "npm:@ai-sdk/openai@^2.0.0-beta.2": "2.0.0-canary.20_zod@3.25.48",
-    "npm:@ai-sdk/react@2.0.0-canary.23": "2.0.0-canary.23_react@19.1.0_zod@3.25.28",
+    "npm:@ai-sdk/react@2.0.0-beta.3": "2.0.0-beta.3_react@19.1.0_zod@3.25.28",
     "npm:@msgpack/msgpack@3.1.2": "3.1.2",
     "npm:@noble/ciphers@1.3.0": "1.3.0",
     "npm:@noble/hashes@1.8.0": "1.8.0",
@@ -82,6 +82,7 @@
     "npm:zod@3.25.28": "3.25.28",
     "npm:zod@3.25.48": "3.25.48",
     "npm:zod@3.25.67": "3.25.67",
+    "npm:zod@^3.25.67": "3.25.67",
     "npm:zustand@5.0.5": "5.0.5_react@19.1.0",
     "npm:zustand@5.0.6": "5.0.6_react@19.1.0"
   },
@@ -262,6 +263,7 @@
     "@artifact/utils-server@0.0.28": {
       "integrity": "d26f42658332e0b449aec1cb65b6784b4ae2de55b74c1a1f68bf6a377b5a038f",
       "dependencies": [
+        "jsr:@artifact/client@^0.0.141",
         "jsr:@std/dotenv@0.225.5",
         "npm:@opentelemetry/api",
         "npm:zod@3.25.67"
@@ -379,18 +381,36 @@
     }
   },
   "npm": {
+    "@ai-sdk/gateway@1.0.0-beta.3_zod@3.25.28": {
+      "integrity": "sha512-g49gMSkXy94lYvl5LRh438OR/0JCG6ol0jV+iLot7cy5HLltZlGocEuauETBu4b10mDXOd7XIjTEZoQpYFMYLQ==",
+      "dependencies": [
+        "@ai-sdk/provider@2.0.0-beta.1",
+        "@ai-sdk/provider-utils@3.0.0-beta.2_zod@3.25.28",
+        "zod@3.25.28"
+      ]
+    },
     "@ai-sdk/openai@2.0.0-canary.20_zod@3.25.48": {
       "integrity": "sha512-AipaQeOz/nIPTtZLJaqG9sxf8zWqZ1UGLG1QOLhNpWwSBDXPVw5k0cWhLtReuZrL/ncKvL6BrGN9aEZLqcmWAg==",
       "dependencies": [
-        "@ai-sdk/provider",
+        "@ai-sdk/provider@2.0.0-canary.14",
         "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.48",
         "zod@3.25.48"
+      ]
+    },
+    "@ai-sdk/provider-utils@3.0.0-beta.2_zod@3.25.28": {
+      "integrity": "sha512-H4K+4weOVgWqrDDeAbQWoA4U5mN4WrQPHQFdH7ynQYcnhj/pzctU9Q6mGlR5ESMWxaXxazxlOblSITlXo9bahA==",
+      "dependencies": [
+        "@ai-sdk/provider@2.0.0-beta.1",
+        "@standard-schema/spec",
+        "eventsource-parser",
+        "zod@3.25.28",
+        "zod-to-json-schema@3.24.6_zod@3.25.28"
       ]
     },
     "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.28": {
       "integrity": "sha512-4IJw6/wkWYLYfFYPvCs5go0L/sBRZsIRW1l/R6LniF4WjAH2+R4dMbESgBmzx+Z2+W+W6gFeK8dnQByn7vaA/w==",
       "dependencies": [
-        "@ai-sdk/provider",
+        "@ai-sdk/provider@2.0.0-canary.14",
         "@standard-schema/spec",
         "zod@3.25.28",
         "zod-to-json-schema@3.24.6_zod@3.25.28"
@@ -399,10 +419,16 @@
     "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.48": {
       "integrity": "sha512-4IJw6/wkWYLYfFYPvCs5go0L/sBRZsIRW1l/R6LniF4WjAH2+R4dMbESgBmzx+Z2+W+W6gFeK8dnQByn7vaA/w==",
       "dependencies": [
-        "@ai-sdk/provider",
+        "@ai-sdk/provider@2.0.0-canary.14",
         "@standard-schema/spec",
         "zod@3.25.48",
         "zod-to-json-schema@3.24.6_zod@3.25.48"
+      ]
+    },
+    "@ai-sdk/provider@2.0.0-beta.1": {
+      "integrity": "sha512-Z8SPncMtS3RsoXITmT7NVwrAq6M44dmw0DoUOYJqNNtCu8iMWuxB8Nxsoqpa0uEEy9R1V1ZThJAXTYgjTUxl3w==",
+      "dependencies": [
+        "json-schema"
       ]
     },
     "@ai-sdk/provider@2.0.0-canary.14": {
@@ -411,11 +437,11 @@
         "json-schema"
       ]
     },
-    "@ai-sdk/react@2.0.0-canary.23_react@19.1.0_zod@3.25.28": {
-      "integrity": "sha512-QZCe78ui+ciltPY1G7LO46x9BTMvTvtER08UlAMmE8JY6Crx+5uxFTUvSM4pdZ7oSZht5gzUbO3hRoOkpEnY6w==",
+    "@ai-sdk/react@2.0.0-beta.3_react@19.1.0_zod@3.25.28": {
+      "integrity": "sha512-Ea2hjDAS3eyoihG9LM0hEcb0XX/ACqKwV0hEI0vytRymczlTu/nmso8TrnuQ/QFCBf3RBjpnzwyz7sAECOREiw==",
       "dependencies": [
-        "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.28",
-        "ai",
+        "@ai-sdk/provider-utils@3.0.0-beta.2_zod@3.25.28",
+        "ai@5.0.0-beta.3_zod@3.25.28",
         "react",
         "swr",
         "throttleit",
@@ -477,10 +503,20 @@
         "undici-types"
       ]
     },
+    "ai@5.0.0-beta.3_zod@3.25.28": {
+      "integrity": "sha512-D0Dr+AapfMG4uszw+tBj7FdnEfM5JzffWpmJoFXHbUW+MPQwNG+rWFD6UyruY/veyqz9Xzr1U7JMwnXwctXeMg==",
+      "dependencies": [
+        "@ai-sdk/gateway",
+        "@ai-sdk/provider@2.0.0-beta.1",
+        "@ai-sdk/provider-utils@3.0.0-beta.2_zod@3.25.28",
+        "@opentelemetry/api",
+        "zod@3.25.28"
+      ]
+    },
     "ai@5.0.0-canary.24_zod@3.25.28": {
       "integrity": "sha512-vqaMmM6XFwjz9mNjox9ehjkWFwXbSchhor5MiqgKZ1qRyoTvoYzAt6oCZwg5kN5jXNQ3rZVuyE8N3BbPbwma2Q==",
       "dependencies": [
-        "@ai-sdk/provider",
+        "@ai-sdk/provider@2.0.0-canary.14",
         "@ai-sdk/provider-utils@3.0.0-canary.19_zod@3.25.28",
         "@opentelemetry/api",
         "zod@3.25.28"
@@ -528,6 +564,9 @@
     },
     "eventemitter3@5.0.1": {
       "integrity": "sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA=="
+    },
+    "eventsource-parser@3.0.3": {
+      "integrity": "sha512-nVpZkTMM9rF6AQ9gPJpFsNAMt48wIzB5TQgiTLdHiuO8XEDhUgZEhqKlZWXbIzo9VmJ/HvysHqEaVeD5v9TPvA=="
     },
     "fast-deep-equal@3.1.3": {
       "integrity": "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="
@@ -843,7 +882,7 @@
       "jsr:@std/dotenv@~0.225.5",
       "jsr:@std/expect@^1.0.16",
       "npm:@ai-sdk/openai@^2.0.0-beta.2",
-      "npm:@ai-sdk/react@2.0.0-canary.23",
+      "npm:@ai-sdk/react@2.0.0-beta.3",
       "npm:@types/node@^24.0.7",
       "npm:ai@^5.0.0-beta.3",
       "npm:commander@14",
@@ -854,7 +893,8 @@
       "npm:gpt-tokenizer@^3.0.1",
       "npm:it-pushable@^3.2.3",
       "npm:p-limit@^6.2.0",
-      "npm:ulid@^3.0.1"
+      "npm:ulid@^3.0.1",
+      "npm:zod@^3.25.67"
     ]
   }
 }
