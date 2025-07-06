@@ -1,14 +1,15 @@
 import { ulid } from 'ulid'
-import type { Implementations } from '@artifact/client/tools'
-import { useArtifact } from '@artifact/utils-server'
-import type schema from './schema.ts'
+import type { Implementations } from '@artifact/client/api'
+import { z } from '@artifact/client/zod'
+import { useArtifact } from '@artifact/client/server'
+import schema from './schema.ts'
 import {
-  // assistantModelMessageSchema,
+  assistantModelMessageSchema,
   // DefaultChatTransport,
   streamText,
-  // systemModelMessageSchema,
-  // toolModelMessageSchema,
-  // userModelMessageSchema,
+  systemModelMessageSchema,
+  toolModelMessageSchema,
+  userModelMessageSchema,
 } from 'ai'
 // message will always be one of these types, as well as:
 // 1. a config message, which represents model settings for the call
@@ -18,7 +19,6 @@ import { openai } from '@ai-sdk/openai'
 type Tools = Implementations<typeof schema>
 
 export const newChat: Tools['newChat'] = async ({ config }) => {
-  // config can be used here for initialization
   const chatId = ulid()
   const filename = `chats/${chatId}/config.json`
   const artifact = useArtifact()
@@ -27,6 +27,17 @@ export const newChat: Tools['newChat'] = async ({ config }) => {
   await artifact.branch.write.commit('new chat: ' + chatId)
 
   return { chatId }
+}
+
+export const deleteChat: Tools['deleteChat'] = async ({ chatId }) => {
+  const artifact = useArtifact()
+  const folder = `chats/${chatId}`
+  if (await artifact.files.read.exists(folder)) {
+    artifact.files.write.rm(folder)
+    await artifact.branch.write.commit('delete chat: ' + chatId)
+    return { deleted: true }
+  }
+  return { deleted: false }
 }
 
 export const infer: Tools['infer'] = () => {
@@ -41,3 +52,5 @@ export const infer: Tools['infer'] = () => {
   // finish
   // when completed, save the final message to the disk
 }
+
+export default schema
