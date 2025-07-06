@@ -19,7 +19,8 @@ export const provision = async (
   // TODO have to insert this token in the repo somehow
   if (!artifact) {
     const token = await generateMachineToken(artifactRepo)
-    artifact = await createWebArtifact(artifactServer, identity, token)
+    const getToken = async () => token
+    artifact = await createWebArtifact(artifactServer, identity, getToken)
   }
 
   const superRepos = await artifact.super.ls()

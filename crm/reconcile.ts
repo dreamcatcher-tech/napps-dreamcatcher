@@ -3,7 +3,11 @@ import { CONFIG_PATH, configSchema } from './types.ts'
 import { assert } from '@std/assert'
 import type { WatchMoneyworksConfig } from './types.ts'
 import pLimit from 'p-limit'
-import { type Artifact, isCommitScope } from '@artifact/client/api'
+import {
+  type Artifact,
+  isBranchScope,
+  isCommitScope,
+} from '@artifact/client/api'
 import type { MoneyworksServer } from './moneyworks-server.ts'
 import { pull } from './pull.ts'
 import Debug from 'debug'
@@ -80,7 +84,7 @@ export async function reconcile(
   if (isChangesBlank) {
     log('changes branch is blank, creating new one')
     await ch.branch.write.rm()
-    assert('branch' in ch.scope)
+    assert(isBranchScope(ch.scope))
     await mw.branch.write.fork({ path: ch.scope.branch })
     log('new changes branch created')
     return
