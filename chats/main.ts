@@ -1,15 +1,15 @@
 import { ulid } from 'ulid'
 import type { Implementations } from '@artifact/client/api'
-import { z } from '@artifact/client/zod'
+// import { z } from '@artifact/client/zod'
 import { useArtifact } from '@artifact/client/server'
 import schema from './schema.ts'
 import {
-  assistantModelMessageSchema,
+  // assistantModelMessageSchema,
   // DefaultChatTransport,
   streamText,
-  systemModelMessageSchema,
-  toolModelMessageSchema,
-  userModelMessageSchema,
+  // systemModelMessageSchema,
+  // toolModelMessageSchema,
+  // userModelMessageSchema,
 } from 'ai'
 // message will always be one of these types, as well as:
 // 1. a config message, which represents model settings for the call
@@ -45,6 +45,9 @@ export const infer: Tools['infer'] = () => {
     model: openai.responses('o3-pro'),
     prompt: 'Write a poem about embedding models.',
   })
+
+  // deno-lint-ignore no-console
+  console.log(usage, totalUsage)
   return textStream
 
   // consume it as quickly as possible
