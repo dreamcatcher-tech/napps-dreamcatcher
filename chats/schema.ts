@@ -1,8 +1,14 @@
 import { z } from '@artifact/client/zod'
 
-export const configSchema = z.object({
+export const configSchema: Config = z.object({
+  provider: z.enum(['openai', 'xai']),
   model: z.string(),
 })
+
+export type Config = z.ZodObject<{
+  model: z.ZodString
+  provider: z.ZodEnum<['openai', 'xai']>
+}>
 
 export default {
   name: '@dreamcatcher/chats',
@@ -17,9 +23,24 @@ export default {
       parameters: z.object({ chatId: z.string() }),
       returns: z.object({ deleted: z.boolean() }),
     },
-
-    infer: {
-      parameters: z.object({}),
+    updateConfig: {
+      parameters: z.object({ chatId: z.string(), config: configSchema }),
+      returns: z.void(),
+    },
+    addMessage: {
+      parameters: z.object({ chatId: z.string(), content: z.string() }),
+      returns: z.void(),
+    },
+    generateText: {
+      parameters: z.object({ chatId: z.string() }),
+      stream: z.unknown(),
+    },
+    generateImage: {
+      parameters: z.object({ chatId: z.string() }),
+      stream: z.string(),
+    },
+    generateTranscript: {
+      parameters: z.object({ chatId: z.string() }),
       stream: z.string(),
     },
   },
@@ -30,9 +51,7 @@ type NappShape = {
   tools: {
     newChat: {
       parameters: z.ZodObject<{
-        config: z.ZodObject<{
-          model: z.ZodString
-        }>
+        config: Config
       }>
       returns: z.ZodObject<{
         chatId: z.ZodString
@@ -46,8 +65,26 @@ type NappShape = {
         deleted: z.ZodBoolean
       }>
     }
-    infer: {
-      parameters: z.ZodObject<{}>
+    updateConfig: {
+      parameters: z.ZodObject<
+        { chatId: z.ZodString; config: Config }
+      >
+      returns: z.ZodVoid
+    }
+    addMessage: {
+      parameters: z.ZodObject<{ chatId: z.ZodString; content: z.ZodString }>
+      returns: z.ZodVoid
+    }
+    generateText: {
+      parameters: z.ZodObject<{ chatId: z.ZodString }>
+      stream: z.ZodUnknown
+    }
+    generateImage: {
+      parameters: z.ZodObject<{ chatId: z.ZodString }>
+      stream: z.ZodString
+    }
+    generateTranscript: {
+      parameters: z.ZodObject<{ chatId: z.ZodString }>
       stream: z.ZodString
     }
   }

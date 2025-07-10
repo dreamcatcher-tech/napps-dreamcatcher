@@ -54,19 +54,20 @@
   "imports": {
     "@ai-sdk/openai": "npm:@ai-sdk/openai@^2.0.0-beta.3",
     "@ai-sdk/react": "npm:@ai-sdk/react@2.0.0-beta.5",
-    "@artifact/client": "jsr:@artifact/client@^0.0.155",
-    "@artifact/server": "jsr:@artifact/server@^0.0.54",
-    "@artifact/utils-server": "jsr:@artifact/utils-server@^0.0.37",
+    "@ai-sdk/xai": "npm:@ai-sdk/xai@^2.0.0-beta.4",
+    "@artifact/client": "jsr:@artifact/client@^0.0.160",
+    "@artifact/server": "jsr:@artifact/server@^0.0.55",
+    "@artifact/utils-server": "jsr:@artifact/utils-server@^0.0.38",
     "@kellnerd/bump": "jsr:@kellnerd/bump@^0.1.1",
     "@libs/xml": "jsr:@libs/xml@^7.0.0",
     "@std/assert": "jsr:@std/assert@^1.0.13",
     "@std/async": "jsr:@std/async@^1.0.13",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.5",
     "@std/expect": "jsr:@std/expect@^1.0.16",
-    "@types/node": "npm:@types/node@^24.0.10",
+    "@types/node": "npm:@types/node@^24.0.12",
     "commander": "npm:commander@^14.0.0",
     "debug": "npm:debug@^4.4.1",
-    "expect-type": "npm:expect-type@^1.2.1",
+    "expect-type": "npm:expect-type@^1.2.2",
     "fast-deep-equal": "npm:fast-deep-equal@^3.1.3",
     "fast-glob": "npm:fast-glob@^3.3.3",
     "glob-to-regexp": "npm:glob-to-regexp@^0.4.1",
@@ -75,7 +76,7 @@
     "it-pushable": "npm:it-pushable@^3.2.3",
     "p-limit": "npm:p-limit@^6.2.0",
     "ulid": "npm:ulid@^3.0.1",
-    "zod": "npm:zod@^3.25.74"
+    "zod": "npm:zod@^3.25.76"
   },
   "nodeModulesDir": "auto"
 }
