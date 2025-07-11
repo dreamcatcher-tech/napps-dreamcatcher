@@ -1,6 +1,6 @@
 {
   "name": "@dreamcatcher/chats",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "tasks": {
     "watch": "deno test -A --watch",
     "bump": "deno run -A jsr:@kellnerd/bump"
