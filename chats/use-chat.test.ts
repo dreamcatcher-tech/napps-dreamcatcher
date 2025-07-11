@@ -1,9 +1,10 @@
 import 'global-jsdom/register'
-import { act, renderHook, waitFor } from 'npm:@testing-library/react@16.0.1'
+import { act, renderHook, waitFor } from '@testing-library/react'
 import { expect } from '@std/expect'
 import {
   type ChatTransport,
   createUIMessageStream,
+  type TextPart,
   type UIDataTypes,
   type UIMessage,
   type UIMessageStreamPart,
@@ -35,13 +36,16 @@ Deno.test('useChat handles simple exchange', async () => {
   const { result } = renderHook(() => useChat({ transport }))
 
   await act(async () => {
-    await result.current.sendMessage('hello')
+    await result.current.sendMessage({
+      role: 'user' as const,
+      parts: [{ type: 'text', text: 'hello' }],
+    })
   })
 
   await waitFor(() => expect(result.current.messages.length).toBe(2))
 
-  const assistant = result.current.messages[1]
+  const assistant = result.current.messages[1]!
   expect(assistant.role).toBe('assistant')
-  expect(assistant.parts[0]?.type).toBe('text')
-  expect(assistant.parts[0]?.text).toBe('Echo: hello')
+  expect(assistant.parts[0]!.type).toBe('text')
+  expect((assistant.parts[0]! as TextPart).text).toBe('Echo: hello')
 })
