@@ -66,18 +66,38 @@ Deno.test('generates text', async () => {
 
   await fns.addMessage({ chatId, content: 'Respond with cheeseburger emoji' })
 
-  const stream = fns.generateText({ chatId })
+  let stream = fns.generateText({ chatId })
   for await (const _ of stream) {
   }
 
   artifact = await artifact.latest()
-  const messages = await artifact.files.read.ls(`chats/${chatId}/messages`)
+  let messages = await artifact.files.read.ls(`chats/${chatId}/messages`)
   expect(messages.length).toBe(2)
-  const message = await artifact.files.read.json(
+  let message = await artifact.files.read.json(
     `chats/${chatId}/messages/${messages[1]!.path}`,
   ) as AssistantModelMessage
   expect(message.content).toHaveLength(1)
-  const text = message.content[0]! as TextPart
+  let text = message.content[0]! as TextPart
+  expect(text.type).toBe('text')
+  expect(text.text).toContain('🍔')
+
+  await fns.addMessage({
+    chatId,
+    content: 'respond with the same emoji again',
+  })
+
+  stream = fns.generateText({ chatId })
+  for await (const _ of stream) {
+  }
+
+  artifact = await artifact.latest()
+  messages = await artifact.files.read.ls(`chats/${chatId}/messages`)
+  expect(messages.length).toBe(4)
+  message = await artifact.files.read.json(
+    `chats/${chatId}/messages/${messages[3]!.path}`,
+  ) as AssistantModelMessage
+  expect(message.content).toHaveLength(1)
+  text = message.content[0]! as TextPart
   expect(text.type).toBe('text')
   expect(text.text).toContain('🍔')
 })
