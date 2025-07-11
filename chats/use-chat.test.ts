@@ -35,12 +35,7 @@ Deno.test('useChat handles simple exchange', async () => {
   } as any
   const { result } = renderHook(() => useChat({ transport }))
 
-  await act(async () => {
-    await result.current.sendMessage({
-      role: 'user' as const,
-      parts: [{ type: 'text', text: 'hello' }],
-    })
-  })
+  await act(async () => await result.current.sendMessage({ text: 'hello' }))
 
   await waitFor(() => expect(result.current.messages.length).toBe(2))
 
