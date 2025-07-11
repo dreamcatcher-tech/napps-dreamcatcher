@@ -2,7 +2,7 @@
   "name": "@dreamcatcher/chats",
   "version": "0.0.9",
   "tasks": {
-    "watch": "deno test -A --watch",
+    "watch": "deno test -A --watch --unsafely-ignore-certificate-errors",
     "bump": "deno run -A jsr:@kellnerd/bump"
   },
   "exports": {

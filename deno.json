@@ -17,7 +17,7 @@
     "jsxImportSourceTypes": "@types/react"
   },
   "tasks": {
-    "test": "deno test -A --trace-leaks --parallel",
+    "test": "deno test -A --trace-leaks --parallel --unsafely-ignore-certificate-errors",
     "ok": "deno check && deno lint && deno fmt --check && deno publish --dry-run --allow-dirty && deno task test",
     "typos": "typos -c ./.github/workflows/typos.toml",
     "watch": "deno test -A --watch --trace-leaks",
