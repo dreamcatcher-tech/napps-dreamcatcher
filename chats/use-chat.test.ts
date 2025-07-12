@@ -54,7 +54,7 @@ import { openai } from '@ai-sdk/openai'
 
 // type ChatTransport
 
-Deno.test.only('useChat with real stream', async () => {
+Deno.test('useChat with real stream', async () => {
   const transport: ChatTransport<UIMessage> = {
     async sendMessages({ messages }) {
       // pop the last message
@@ -125,52 +125,51 @@ Deno.test.only('useChat with real stream', async () => {
   expect(assistant.parts[2]!.type).toBe('text')
   expect((assistant.parts[2]! as TextPart).text).toContain('🍔')
 })
-// Deno.test('useChat with artifact stream', async () => {
-//   await using fixtures = await harness(opts)
-//   let { artifact } = fixtures
+Deno.test('useChat with artifact stream', async () => {
+  await using fixtures = await harness(opts)
+  let { artifact } = fixtures
 
-//   const fns = artifact.fibers.actions.bind(schema)
+  const fns = artifact.fibers.actions.bind(schema)
 
-//   const { chatId } = await fns.newChat({
-//     config: { model: 'gpt-4.1-nano', provider: 'openai' },
-//   })
+  const { chatId } = await fns.newChat({
+    config: { model: 'gpt-4.1-nano', provider: 'openai' },
+  })
 
-//   const transport = {
-//     async sendMessages({ messages }: { messages: UIMessage[] }) {
-//       const last = messages[messages.length - 1]
-//       const userText =
-//         (last?.parts?.[0] as { text?: string } | undefined)?.text ?? ''
-//       const { messageId } = await fns.addMessage({ chatId, content: userText })
-//       const stream = fns.generateText({ chatId }) as AsyncIterable<
-//         UIMessageStreamPart
-//       >
-//       return ReadableStream.from(stream)
-//     },
-//     async reconnectToStream(): Promise<
-//       ReadableStream<UIMessageStreamPart> | null
-//     > {
-//       return null
-//     },
-//   } as any
+  const transport: ChatTransport<UIMessage> = {
+    async sendMessages(
+      { messages }: { messages: UIMessage[] },
+    ): Promise<ReadableStream<UIMessageChunk>> {
+      const params = schema.tools.generateText.parameters.parse(
+        { chatId, message: messages[messages.length - 1] },
+      )
+      const stream = fns.generateText(params) as AsyncIterable<UIMessageChunk>
+      return ReadableStream.from(stream)
+    },
+    async reconnectToStream(): Promise<
+      ReadableStream<UIMessageChunk> | null
+    > {
+      return null
+    },
+  }
 
-//   const { result } = renderHook(() => useChat({ transport }))
+  const { result } = renderHook(() => useChat({ transport }))
 
-//   await act(async () => {
-//     await result.current.sendMessage({
-//       role: 'user' as const,
-//       parts: [{ type: 'text', text: 'Respond with cheeseburger emoji' }],
-//     })
-//   })
-//   await waitFor(() => expect(result.current.status).toBe('ready'))
+  await act(async () => {
+    await result.current.sendMessage({
+      text: 'Respond with cheeseburger emoji',
+    })
+  })
+  await waitFor(() => expect(result.current.status).toBe('ready'))
 
-//   await waitFor(() => expect(result.current.messages.length).toBe(2))
+  await waitFor(() => expect(result.current.messages.length).toBe(2))
 
-//   const assistant = result.current.messages[1]!
-//   expect(assistant.role).toBe('assistant')
-//   expect(assistant.parts[0]!.type).toBe('text')
-//   expect((assistant.parts[0]! as TextPart).text).toContain('🍔')
+  const assistant = result.current.messages[1]!
+  expect(assistant.role).toBe('assistant')
+  expect(assistant.parts).toHaveLength(2)
+  expect(assistant.parts[1]!.type).toBe('text')
+  expect((assistant.parts[1]! as TextPart).text).toContain('🍔')
 
-//   artifact = await artifact.latest()
-//   const messages = await artifact.files.read.ls(`chats/${chatId}/messages`)
-//   expect(messages.length).toBe(2)
-// })
+  artifact = await artifact.latest()
+  const messages = await artifact.files.read.ls(`chats/${chatId}/messages`)
+  expect(messages.length).toBe(2)
+})

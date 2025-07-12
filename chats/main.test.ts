@@ -68,7 +68,7 @@ Deno.test('generates text', async () => {
     message: {
       id: '1',
       role: 'user',
-      content: 'Respond with cheeseburger emoji',
+      parts: [{ type: 'text', text: 'Respond with cheeseburger emoji' }],
     },
   })
   for await (const _ of stream) {
@@ -95,7 +95,7 @@ Deno.test('generates text', async () => {
     message: {
       id: '2',
       role: 'user',
-      content: 'respond with the same emoji again',
+      parts: [{ type: 'text', text: 'respond with the same emoji again' }],
     },
   })
   for await (const _ of stream) {

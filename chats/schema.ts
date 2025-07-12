@@ -34,7 +34,9 @@ export default {
         message: z.object({
           id: z.string(),
           role: z.literal('user'),
-          content: z.string(),
+          parts: z.array(
+            z.object({ type: z.literal('text'), text: z.string() }),
+          ),
         }),
       }),
       stream: z.unknown(),
@@ -84,7 +86,9 @@ type NappShape = {
             {
               id: z.ZodString
               role: z.ZodLiteral<'user'>
-              content: z.ZodString
+              parts: z.ZodArray<
+                z.ZodObject<{ type: z.ZodLiteral<'text'>; text: z.ZodString }>
+              >
             }
           >
         }

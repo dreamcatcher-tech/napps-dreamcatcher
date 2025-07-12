@@ -50,11 +50,7 @@ export const generateText: Tools['generateText'] = async function* (
   const artifact = useArtifact()
   const messagesPath = `chats/${chatId}/messages`
   const messages = await loadMessages(artifact, messagesPath)
-  const uiMessage: UIMessage = {
-    ...message,
-    parts: [{ type: 'text', text: message.content }],
-  }
-  messages.push(uiMessage)
+  messages.push(message)
 
   const configJson = await artifact.files.read.json(
     `chats/${chatId}/config.json`,
@@ -74,6 +70,7 @@ export const generateText: Tools['generateText'] = async function* (
   })
   let generations: UIMessage[] | undefined
   yield* result.toUIMessageStream({
+    generateMessageId: () => ulid(),
     sendReasoning: true,
     sendSources: true,
     onFinish(output) {
@@ -89,7 +86,7 @@ export const generateText: Tools['generateText'] = async function* (
   if (!lastMessage || lastMessage.role !== 'assistant') {
     throw new Error('No output')
   }
-  await addMessages(chatId, [uiMessage, lastMessage])
+  await addMessages(chatId, [message, lastMessage])
 }
 
 const getNextMessageIndex = (messages: Meta[]) => {
