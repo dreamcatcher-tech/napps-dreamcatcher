@@ -57,7 +57,12 @@ import { openai } from '@ai-sdk/openai'
 Deno.test.only('useChat with real stream', async () => {
   const transport: ChatTransport<UIMessage> = {
     async sendMessages({ messages }) {
+      // pop the last message
+      // check it is a user message
+      // send this to the server along with the generate request
+
       console.log('server start', messages)
+      let out
       const result = streamText({
         model: openai('o4-mini'),
         seed: 1337,
@@ -72,6 +77,17 @@ Deno.test.only('useChat with real stream', async () => {
           console.error('server', error)
           throw error // TODO use a pushable and push the error to the client
         },
+        onFinish(output) {
+          console.log('server finish', output)
+          out = output
+        },
+      })
+      result.consumeStream({
+        onError: (error) => {
+          console.error('server', error)
+        },
+      }).then(() => {
+        console.log('server done', out!)
       })
       return result.toUIMessageStream({
         generateMessageId: () => '1',
@@ -96,7 +112,8 @@ Deno.test.only('useChat with real stream', async () => {
   })
   console.log('client status', result.current.status)
   console.log('client error', result.current.error)
-  console.log('client messages', result.current.messages)
+  console.log('client messages')
+  console.dir(result.current.messages, { depth: null })
   await waitFor(() => expect(result.current.status).toBe('ready'))
 
   await waitFor(() => expect(result.current.messages.length).toBe(2))

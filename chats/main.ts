@@ -8,15 +8,15 @@ import {
 } from '@artifact/client/api'
 import { openai } from '@ai-sdk/openai'
 import { xai } from '@ai-sdk/xai'
+import type { ProviderOptions } from '@ai-sdk/provider-utils'
 import { configSchema } from './schema.ts'
 import { useArtifact } from '@artifact/client/server'
 import schema from './schema.ts'
 import {
-  type AssistantModelMessage,
+  convertToModelMessages,
   type LanguageModel,
-  modelMessageSchema,
   streamText,
-  type UserModelMessage,
+  type UIMessage,
 } from 'ai'
 import { assert } from '@std/assert/assert'
 
@@ -44,16 +44,17 @@ export const deleteChat: Tools['deleteChat'] = async ({ chatId }) => {
   return { deleted: false }
 }
 
-export const addMessage: Tools['addMessage'] = async ({ chatId, content }) => {
-  return _addMessage(chatId, { role: 'user', content })
-}
-
 export const generateText: Tools['generateText'] = async function* (
-  { chatId },
+  { chatId, message },
 ) {
   const artifact = useArtifact()
   const messagesPath = `chats/${chatId}/messages`
   const messages = await loadMessages(artifact, messagesPath)
+  const uiMessage: UIMessage = {
+    ...message,
+    parts: [{ type: 'text', text: message.content }],
+  }
+  messages.push(uiMessage)
 
   const configJson = await artifact.files.read.json(
     `chats/${chatId}/config.json`,
@@ -62,26 +63,33 @@ export const generateText: Tools['generateText'] = async function* (
 
   const { model, providerOptions } = getProvider(config)
 
-  const {
-    fullStream,
-    content,
-  } = streamText({
+  const result = streamText({
     model,
     seed: 1337,
-    providerOptions: providerOptions as any,
-    messages,
+    providerOptions,
+    messages: convertToModelMessages(messages),
     onError(error) {
       throw error // TODO use a pushable and push the error to the client
     },
   })
+  let generations: UIMessage[] | undefined
+  yield* result.toUIMessageStream({
+    sendReasoning: true,
+    sendSources: true,
+    onFinish(output) {
+      console.log('onFinish', output)
+      generations = output.messages
+    },
+  })
 
-  // consumeStream() // TODO consume the stream, but tolerate the client
-  // detaching
-
-  yield* fullStream
-
-  const contentResult = await content as any // TODO use a specific type
-  await _addMessage(chatId, { role: 'assistant', content: contentResult })
+  if (!generations || generations.length === 0) {
+    throw new Error('No output')
+  }
+  const lastMessage = generations[generations.length - 1]
+  if (!lastMessage || lastMessage.role !== 'assistant') {
+    throw new Error('No output')
+  }
+  await addMessages(chatId, [uiMessage, lastMessage])
 }
 
 const getNextMessageIndex = (messages: Meta[]) => {
@@ -103,15 +111,18 @@ const getNextMessageIndex = (messages: Meta[]) => {
 const loadMessages = async (artifact: Artifact, messagesPath: string) => {
   const messageNames = await artifact.files.read.ls(messagesPath)
   const messages = await Promise.all(messageNames.map(async ({ path }) => {
-    const data = await artifact.files.read.json(messagesPath + '/' + path)
-    return modelMessageSchema.parse(data)
+    const data = await artifact.files.read.typed(
+      messagesPath + '/' + path,
+      (data: unknown) => data as UIMessage,
+    )
+    return data
   }))
   return messages
 }
 
 const getProvider = (config: z.infer<typeof configSchema>): {
   model: LanguageModel
-  providerOptions: Record<string, unknown>
+  providerOptions: ProviderOptions
 } => {
   if (config.provider === 'openai') {
     return {
@@ -142,23 +153,24 @@ const getProvider = (config: z.infer<typeof configSchema>): {
   throw new Error('Invalid provider: ' + config.provider)
 }
 
-const _addMessage = async (
-  chatId: string,
-  message: UserModelMessage | AssistantModelMessage,
-) => {
+const addMessages = async (chatId: string, messages: UIMessage[]) => {
   let artifact = useArtifact()
   artifact = await artifact.latest()
   assert(isRepoScope(artifact.scope))
   const { repo } = artifact.scope
   const messageNames = await artifact.files.read.ls(`chats/${chatId}/messages`)
-  const index = getNextMessageIndex(messageNames) + ''
-  const prefix = index.padStart(6, '0')
-  const filename = `${prefix}-${repo}.json`
-  const path = `chats/${chatId}/messages/${filename}`
+  let index = getNextMessageIndex(messageNames)
 
-  artifact.files.write.text(path, JSON.stringify(message, null, 2))
-  await artifact.branch.write.commit('add message: ' + chatId + ' ' + filename)
-  return { messageId: filename }
+  for (const message of messages) {
+    const prefix = index.toString().padStart(6, '0')
+    index++
+    const filename = `${prefix}-${repo}.json`
+    const path = `chats/${chatId}/messages/${filename}`
+    artifact.files.write.text(path, JSON.stringify(message, null, 2))
+  }
+  await artifact.branch.write.commit(
+    `add ${messages.length} messages: ${chatId}`,
+  )
 }
 
 export default schema

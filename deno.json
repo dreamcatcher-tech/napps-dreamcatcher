@@ -53,6 +53,7 @@
   "workspace": ["./concat", "./crm", "./chats"],
   "imports": {
     "@ai-sdk/openai": "npm:@ai-sdk/openai@2.0.0-beta.7",
+    "@ai-sdk/provider-utils": "npm:@ai-sdk/provider-utils@3.0.0-beta.2",
     "@ai-sdk/react": "npm:@ai-sdk/react@2.0.0-beta.15",
     "@ai-sdk/xai": "npm:@ai-sdk/xai@2.0.0-beta.4",
     "@artifact/client": "jsr:@artifact/client@^0.0.161",
@@ -77,10 +78,10 @@
     "ai": "npm:ai@5.0.0-beta.15",
     "it-pushable": "npm:it-pushable@^3.2.3",
     "p-limit": "npm:p-limit@^6.2.0",
-    "react": "npm:react@^19.1.0",
-    "react-dom": "npm:react-dom@^19.1.0",
-    "ulid": "npm:ulid@^3.0.1",
-    "zod": "npm:zod@^3.25.76"
+    "react": "npm:react@19.1.0",
+    "react-dom": "npm:react-dom@19.1.0",
+    "ulid": "npm:ulid@3.0.1",
+    "zod": "npm:zod@3.25.76"
   },
   "nodeModulesDir": "auto"
 }

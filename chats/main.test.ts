@@ -1,10 +1,10 @@
 import { expectTypeOf } from 'expect-type'
 import { expect } from '@std/expect'
-import { addMessage, deleteChat, generateText, newChat } from './main.ts'
+import { deleteChat, generateText, newChat } from './main.ts'
 import schema from './schema.ts'
 import { harness } from '@artifact/server/harness'
 import '@std/dotenv/load'
-import type { AssistantModelMessage, TextPart } from 'ai'
+import type { TextPart, UIMessage } from 'ai'
 
 export const opts = {
   isolation: 'asyncLocalStorage' as const,
@@ -14,7 +14,6 @@ export const opts = {
       newChat,
       deleteChat,
       generateText,
-      addMessage,
     },
   },
 }
@@ -64,41 +63,54 @@ Deno.test('generates text', async () => {
     config: { model: 'gpt-4.1-nano', provider: 'openai' },
   })
 
-  await fns.addMessage({ chatId, content: 'Respond with cheeseburger emoji' })
-
-  let stream = fns.generateText({ chatId })
+  let stream = fns.generateText({
+    chatId,
+    message: {
+      id: '1',
+      role: 'user',
+      content: 'Respond with cheeseburger emoji',
+    },
+  })
   for await (const _ of stream) {
-    console.log(_)
+    console.log('stream1', _)
   }
 
   artifact = await artifact.latest()
   let messages = await artifact.files.read.ls(`chats/${chatId}/messages`)
   expect(messages.length).toBe(2)
-  let message = await artifact.files.read.json(
+  let message = await artifact.files.read.typed(
     `chats/${chatId}/messages/${messages[1]!.path}`,
-  ) as AssistantModelMessage
-  expect(message.content).toHaveLength(1)
-  let text = message.content[0]! as TextPart
+    (data: unknown) => data as UIMessage,
+  )
+
+  console.log('message', message)
+
+  expect(message.parts).toHaveLength(2)
+  let text = message.parts[1]! as TextPart
   expect(text.type).toBe('text')
   expect(text.text).toContain('🍔')
 
-  await fns.addMessage({
+  stream = fns.generateText({
     chatId,
-    content: 'respond with the same emoji again',
+    message: {
+      id: '2',
+      role: 'user',
+      content: 'respond with the same emoji again',
+    },
   })
-
-  stream = fns.generateText({ chatId })
   for await (const _ of stream) {
+    console.log('stream2', _)
   }
 
   artifact = await artifact.latest()
   messages = await artifact.files.read.ls(`chats/${chatId}/messages`)
   expect(messages.length).toBe(4)
-  message = await artifact.files.read.json(
+  message = await artifact.files.read.typed(
     `chats/${chatId}/messages/${messages[3]!.path}`,
-  ) as AssistantModelMessage
-  expect(message.content).toHaveLength(1)
-  text = message.content[0]! as TextPart
+    (data: unknown) => data as UIMessage,
+  )
+  expect(message.parts).toHaveLength(2)
+  text = message.parts[1]! as TextPart
   expect(text.type).toBe('text')
   expect(text.text).toContain('🍔')
 })
