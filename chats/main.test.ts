@@ -6,7 +6,7 @@ import { harness } from '@artifact/server/harness'
 import '@std/dotenv/load'
 import type { AssistantModelMessage, TextPart } from 'ai'
 
-const opts = {
+export const opts = {
   isolation: 'asyncLocalStorage' as const,
   overrides: {
     '@dreamcatcher/chats': {
@@ -68,6 +68,7 @@ Deno.test('generates text', async () => {
 
   let stream = fns.generateText({ chatId })
   for await (const _ of stream) {
+    console.log(_)
   }
 
   artifact = await artifact.latest()

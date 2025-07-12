@@ -15,7 +15,6 @@ import {
   type AssistantModelMessage,
   type LanguageModel,
   modelMessageSchema,
-  type ProviderOptions,
   streamText,
   type UserModelMessage,
 } from 'ai'
@@ -69,12 +68,11 @@ export const generateText: Tools['generateText'] = async function* (
   } = streamText({
     model,
     seed: 1337,
-    providerOptions,
+    providerOptions: providerOptions as any,
     messages,
     onError(error) {
       throw error // TODO use a pushable and push the error to the client
     },
-    toolCallStreaming: true,
   })
 
   // consumeStream() // TODO consume the stream, but tolerate the client
@@ -113,7 +111,7 @@ const loadMessages = async (artifact: Artifact, messagesPath: string) => {
 
 const getProvider = (config: z.infer<typeof configSchema>): {
   model: LanguageModel
-  providerOptions: ProviderOptions
+  providerOptions: Record<string, unknown>
 } => {
   if (config.provider === 'openai') {
     return {
@@ -154,11 +152,13 @@ const _addMessage = async (
   const { repo } = artifact.scope
   const messageNames = await artifact.files.read.ls(`chats/${chatId}/messages`)
   const index = getNextMessageIndex(messageNames) + ''
-  const filename = index.padStart(6, '0')
-  const path = `chats/${chatId}/messages/${filename}-${repo}.json`
+  const prefix = index.padStart(6, '0')
+  const filename = `${prefix}-${repo}.json`
+  const path = `chats/${chatId}/messages/${filename}`
 
   artifact.files.write.text(path, JSON.stringify(message, null, 2))
-  await artifact.branch.write.commit('add message: ' + chatId + ' ' + index)
+  await artifact.branch.write.commit('add message: ' + chatId + ' ' + filename)
+  return { messageId: filename }
 }
 
 export default schema

@@ -29,7 +29,9 @@ export default {
     },
     addMessage: {
       parameters: z.object({ chatId: z.string(), content: z.string() }),
-      returns: z.void(),
+      returns: z.object({
+        messageId: z.string(),
+      }),
     },
     generateText: {
       parameters: z.object({ chatId: z.string() }),
@@ -73,7 +75,9 @@ type NappShape = {
     }
     addMessage: {
       parameters: z.ZodObject<{ chatId: z.ZodString; content: z.ZodString }>
-      returns: z.ZodVoid
+      returns: z.ZodObject<{
+        messageId: z.ZodString
+      }>
     }
     generateText: {
       parameters: z.ZodObject<{ chatId: z.ZodString }>
