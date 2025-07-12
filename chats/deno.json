@@ -1,12 +1,13 @@
 {
   "name": "@dreamcatcher/chats",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "tasks": {
     "watch": "deno test -A --watch --unsafely-ignore-certificate-errors",
     "bump": "deno run -A jsr:@kellnerd/bump"
   },
   "exports": {
     ".": "./main.ts",
-    "./schema": "./schema.ts"
+    "./schema": "./schema.ts",
+    "./transport": "./transport.ts"
   }
 }

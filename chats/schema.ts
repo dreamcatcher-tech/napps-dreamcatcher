@@ -52,7 +52,7 @@ export default {
   },
 } as NappShape
 
-type NappShape = {
+export type NappShape = {
   name: '@dreamcatcher/chats'
   tools: {
     newChat: {

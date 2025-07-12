@@ -16,6 +16,7 @@ import { useChat } from '@ai-sdk/react'
 import { harness } from '@artifact/server/harness'
 import { opts } from './main.test.ts'
 import schema from './schema.ts'
+import transport from './transport.ts'
 // Deno.test('useChat handles mock exchange', async () => {
 //   const transport = {
 //     async sendMessages(
@@ -54,7 +55,7 @@ import { openai } from '@ai-sdk/openai'
 
 // type ChatTransport
 
-Deno.test('useChat with real stream', async () => {
+Deno.test('useChat with direct stream', async () => {
   const transport: ChatTransport<UIMessage> = {
     async sendMessages({ messages }) {
       // pop the last message
@@ -102,12 +103,18 @@ Deno.test('useChat with real stream', async () => {
     },
   }
 
-  const { result } = renderHook(() => useChat({ transport }))
+  const { result } = renderHook(() =>
+    useChat({
+      transport,
+      onFinish: (output) => {
+        console.log('client finish', output)
+      },
+    })
+  )
 
   await act(async () => {
     await result.current.sendMessage({
-      role: 'user' as const,
-      parts: [{ type: 'text', text: 'Respond with cheeseburger emoji' }],
+      text: 'Respond with cheeseburger emoji',
     })
   })
   console.log('client status', result.current.status)
@@ -125,7 +132,7 @@ Deno.test('useChat with real stream', async () => {
   expect(assistant.parts[2]!.type).toBe('text')
   expect((assistant.parts[2]! as TextPart).text).toContain('🍔')
 })
-Deno.test('useChat with artifact stream', async () => {
+Deno.test.only('useChat with artifact stream', async () => {
   await using fixtures = await harness(opts)
   let { artifact } = fixtures
 
@@ -135,24 +142,9 @@ Deno.test('useChat with artifact stream', async () => {
     config: { model: 'gpt-4.1-nano', provider: 'openai' },
   })
 
-  const transport: ChatTransport<UIMessage> = {
-    async sendMessages(
-      { messages }: { messages: UIMessage[] },
-    ): Promise<ReadableStream<UIMessageChunk>> {
-      const params = schema.tools.generateText.parameters.parse(
-        { chatId, message: messages[messages.length - 1] },
-      )
-      const stream = fns.generateText(params) as AsyncIterable<UIMessageChunk>
-      return ReadableStream.from(stream)
-    },
-    async reconnectToStream(): Promise<
-      ReadableStream<UIMessageChunk> | null
-    > {
-      return null
-    },
-  }
-
-  const { result } = renderHook(() => useChat({ transport }))
+  const { result } = renderHook(() =>
+    useChat({ transport: transport(fns.generateText), id: chatId })
+  )
 
   await act(async () => {
     await result.current.sendMessage({
