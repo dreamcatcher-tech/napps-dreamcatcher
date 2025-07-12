@@ -1,16 +1,5 @@
 import type { ChatTransport, UIMessage, UIMessageChunk } from 'ai'
-import schema, { type NappShape } from './schema.ts'
-
-// parameters: z.object({
-//     chatId: z.string(),
-//     message: z.object({
-//       id: z.string(),
-//       role: z.literal('user'),
-//       parts: z.array(
-//         z.object({ type: z.literal('text'), text: z.string() }),
-//       ),
-//     }),
-//   }),
+import schema from './schema.ts'
 
 type GenerateTextParams = {
   chatId: string
@@ -34,10 +23,10 @@ export default function transport(
       { messages, chatId }: { messages: UIMessage[]; chatId: string },
     ): Promise<ReadableStream<UIMessageChunk>> {
       const params = schema.tools.generateText.parameters.parse(
-        { chatId, message: messages[messages.length - 1]! },
+        { chatId, message: messages[messages.length - 1] },
       )
       const stream = generateText(params) as AsyncIterable<UIMessageChunk>
-      return ReadableStream.from(stream)
+      return asyncIterableToReadableStream(stream)
     },
     async reconnectToStream(): Promise<
       ReadableStream<UIMessageChunk> | null
@@ -46,4 +35,28 @@ export default function transport(
     },
   }
   return transport
+}
+
+function asyncIterableToReadableStream(asyncIterable: AsyncIterable<unknown>) {
+  const iterator = asyncIterable[Symbol.asyncIterator]()
+  return new ReadableStream({
+    async pull(controller) {
+      try {
+        const { value, done } = await iterator.next()
+        if (done) {
+          controller.close()
+        } else {
+          controller.enqueue(value)
+        }
+      } catch (error) {
+        controller.error(error)
+      }
+    },
+    async cancel(reason) {
+      // Optionally handle cancellation if the iterable supports it
+      if (typeof iterator.return === 'function') {
+        await iterator.return(reason)
+      }
+    },
+  })
 }
