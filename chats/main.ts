@@ -144,7 +144,11 @@ const getProvider = (config: z.infer<typeof configSchema>): {
     if (config.model === 'grok-4') {
       return {
         model: xai(config.model),
-        providerOptions: {},
+        providerOptions: {
+          xai: {
+            searchParameters: { mode: 'auto' },
+          },
+        },
       }
     }
     return {
@@ -152,6 +156,7 @@ const getProvider = (config: z.infer<typeof configSchema>): {
       providerOptions: {
         xai: {
           reasoningEffort: 'high',
+          searchParameters: { mode: 'auto' },
         },
       },
     }
