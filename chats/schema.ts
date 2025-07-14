@@ -1,4 +1,5 @@
 import { z } from '@artifact/client/zod'
+import type { UIMessage } from 'ai'
 
 export const configSchema: Config = z.object({
   provider: z.enum(['openai', 'xai']),
@@ -104,4 +105,20 @@ export type NappShape = {
       stream: z.ZodString
     }
   }
+}
+
+export type UIMessageSchema = z.ZodObject<{
+  id: z.ZodString
+  role: z.ZodEnum<['system', 'user', 'assistant']>
+  parts: z.ZodArray<z.ZodObject<{ type: z.ZodString }>>
+}>
+
+export const uiMessageSchema: UIMessageSchema = z.object({
+  id: z.string(),
+  role: z.enum(['system', 'user', 'assistant']),
+  parts: z.array(z.object({ type: z.string() }).passthrough()),
+}).passthrough()
+
+export function isUIMessage(value: unknown): value is UIMessage {
+  return uiMessageSchema.safeParse(value).success
 }

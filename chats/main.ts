@@ -48,8 +48,7 @@ export const generateText: Tools['generateText'] = async function* (
   { chatId, message },
 ) {
   const artifact = useArtifact()
-  const messagesPath = `chats/${chatId}/messages`
-  const messages = await loadMessages(artifact, messagesPath)
+  const messages = await loadMessages(artifact, chatId)
   messages.push(message)
 
   const configJson = await artifact.files.read.json(
@@ -105,7 +104,17 @@ const getNextMessageIndex = (messages: Meta[]) => {
   return highestIndex + 1
 }
 
-const loadMessages = async (artifact: Artifact, messagesPath: string) => {
+const loadMessages = async (artifact: Artifact, chatId: string) => {
+  const chatPath = `chats/${chatId}`
+  if (!(await artifact.files.read.exists(chatPath))) {
+    throw new Error('Chat not found: ' + chatId)
+  }
+
+  const messagesPath = chatPath + '/messages'
+  if (!(await artifact.files.read.exists(messagesPath))) {
+    return []
+  }
+
   const messageNames = await artifact.files.read.ls(messagesPath)
   const messages = await Promise.all(messageNames.map(async ({ path }) => {
     const data = await artifact.files.read.typed(

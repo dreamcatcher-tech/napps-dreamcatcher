@@ -132,7 +132,7 @@ Deno.test('useChat with direct stream', async () => {
   expect(assistant.parts[2]!.type).toBe('text')
   expect((assistant.parts[2]! as TextPart).text).toContain('🍔')
 })
-Deno.test.only('useChat with artifact stream', async () => {
+Deno.test('useChat with artifact stream', async () => {
   await using fixtures = await harness(opts)
   let { artifact } = fixtures
 
