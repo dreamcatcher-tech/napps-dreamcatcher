@@ -6,9 +6,8 @@ import {
   isRepoScope,
   type Meta,
 } from '@artifact/client/api'
-import { openai } from '@ai-sdk/openai'
-import { xai } from '@ai-sdk/xai'
-import type { ProviderOptions } from '@ai-sdk/provider-utils'
+import { openai, type OpenAIResponsesProviderOptions } from '@ai-sdk/openai'
+import { xai, type XaiProviderOptions } from '@ai-sdk/xai'
 import { configSchema } from './schema.ts'
 import { useArtifact } from '@artifact/client/server'
 import schema from './schema.ts'
@@ -62,21 +61,30 @@ export const generateText: Tools['generateText'] = async function* (
     model,
     seed: 1337,
     providerOptions,
-    messages: convertToModelMessages(messages),
+    messages: convertToModelMessages(messages), 
     onError(error) {
       throw error // TODO use a pushable and push the error to the client
     },
   })
   let generations: UIMessage[] | undefined
-  yield* result.toUIMessageStream({
-    generateMessageId: () => ulid(),
-    sendReasoning: true,
-    sendSources: true,
-    onFinish(output) {
-      console.log('onFinish', output)
-      generations = output.messages
-    },
-  })
+  try {
+
+    yield* result.toUIMessageStream({
+      generateMessageId: () => ulid(),
+      sendReasoning: true,
+      sendSources: true,
+      onFinish(output) {
+        console.log('onFinish', output)
+        generations = output.messages
+      },
+    })
+  } finally {
+    console.log('finally')
+  }
+  await result.consumeStream({ onError: (error) => {
+    console.error('onError', error)
+    throw error
+  }})
 
   if (!generations || generations.length === 0) {
     throw new Error('No output')
@@ -128,7 +136,7 @@ const loadMessages = async (artifact: Artifact, chatId: string) => {
 
 const getProvider = (config: z.infer<typeof configSchema>): {
   model: LanguageModel
-  providerOptions: ProviderOptions
+  providerOptions: { openai: OpenAIResponsesProviderOptions } | { xai: XaiProviderOptions }
 } => {
   if (config.provider === 'openai') {
     return {

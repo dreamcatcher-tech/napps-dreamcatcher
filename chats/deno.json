@@ -8,6 +8,7 @@
   "exports": {
     ".": "./main.ts",
     "./schema": "./schema.ts",
-    "./transport": "./transport.ts"
+    "./transport": "./transport.ts",
+    "./react": "./react.ts"
   }
 }
