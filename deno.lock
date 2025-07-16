@@ -22,6 +22,7 @@
     "jsr:@kitsonk/kv-toolbox@~0.29.2": "0.29.2",
     "jsr:@libs/xml@7.0.0": "7.0.0",
     "jsr:@panva/jose@6.0.11": "6.0.11",
+    "jsr:@std/assert@1": "1.0.13",
     "jsr:@std/assert@1.0.13": "1.0.13",
     "jsr:@std/assert@^1.0.13": "1.0.13",
     "jsr:@std/async@1.0.13": "1.0.13",
@@ -30,6 +31,7 @@
     "jsr:@std/crypto@1": "1.0.5",
     "jsr:@std/dotenv@0.225.5": "0.225.5",
     "jsr:@std/encoding@1": "1.0.10",
+    "jsr:@std/encoding@^1.0.5": "1.0.10",
     "jsr:@std/expect@1.0.16": "1.0.16",
     "jsr:@std/fmt@~1.0.2": "1.0.8",
     "jsr:@std/internal@^1.0.6": "1.0.9",
@@ -140,6 +142,7 @@
         "jsr:@panva/jose",
         "jsr:@std/assert@1.0.13",
         "npm:@msgpack/msgpack",
+        "npm:@opentelemetry/api",
         "npm:@scure/base",
         "npm:debug",
         "npm:ulid"
@@ -202,7 +205,10 @@
       ]
     },
     "@deno/kv-utils@0.1.4": {
-      "integrity": "119a768c8a9b1af76552b48e78457cd2fb38cc97c10b3a57cf65efe47ff9ca1a"
+      "integrity": "119a768c8a9b1af76552b48e78457cd2fb38cc97c10b3a57cf65efe47ff9ca1a",
+      "dependencies": [
+        "jsr:@std/encoding@^1.0.5"
+      ]
     },
     "@dreamcatcher/s3-lite-client@0.9.0": {
       "integrity": "ee0193d99828c7d5e900ae3843e4604fa1a9e2cf89217ce1ad66fab9b886d845"
@@ -221,9 +227,10 @@
       "integrity": "b487baf82cc5c18b3cd542df72349754b65fc4cb3a3017d663cc9fc3d185b701",
       "dependencies": [
         "jsr:@deno/kv-utils",
+        "jsr:@std/assert@1",
         "jsr:@std/bytes@1",
         "jsr:@std/crypto",
-        "jsr:@std/encoding",
+        "jsr:@std/encoding@1",
         "jsr:@std/media-types"
       ]
     },

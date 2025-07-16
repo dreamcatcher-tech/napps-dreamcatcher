@@ -63,8 +63,12 @@ export const generateText: Tools['generateText'] = async function* (
     providerOptions,
     messages: convertToModelMessages(messages), 
     onError(error) {
+      console.error('streamText onError', error)
       throw error // TODO use a pushable and push the error to the client
     },
+    onFinish: (output) => {
+      console.log('streamText onFinish', output)
+    }
   })
   let generations: UIMessage[] | undefined
   try {
@@ -74,9 +78,13 @@ export const generateText: Tools['generateText'] = async function* (
       sendReasoning: true,
       sendSources: true,
       onFinish(output) {
-        console.log('onFinish', output)
+        console.log('toUIMessageStream onFinish', output)
         generations = output.messages
       },
+      onError: (error) => {
+        console.error('toUIMessageStream onError', error)
+        throw error
+      }
     })
   } finally {
     console.log('finally')
