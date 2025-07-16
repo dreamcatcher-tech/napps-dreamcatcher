@@ -71,6 +71,10 @@ export const generateText: Tools['generateText'] = async function* (
     }
   })
   let generations: UIMessage[] | undefined
+  const consumePromise =result.consumeStream({ onError: (error) => {
+    console.error('onError', error)
+    throw error
+  }})
   try {
 
     yield* result.toUIMessageStream({
@@ -89,10 +93,8 @@ export const generateText: Tools['generateText'] = async function* (
   } finally {
     console.log('finally')
   }
-  await result.consumeStream({ onError: (error) => {
-    console.error('onError', error)
-    throw error
-  }})
+
+  await consumePromise
 
   if (!generations || generations.length === 0) {
     throw new Error('No output')

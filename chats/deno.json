@@ -1,6 +1,6 @@
 {
   "name": "@dreamcatcher/chats",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "tasks": {
     "watch": "deno test -A --watch --unsafely-ignore-certificate-errors",
     "bump": "deno run -A jsr:@kellnerd/bump"
