@@ -31,6 +31,8 @@ export default function transport(
     async reconnectToStream(): Promise<
       ReadableStream<UIMessageChunk> | null
     > {
+      // deno-lint-ignore no-console
+      console.log('reconnectToStream')
       return null
     },
   }
